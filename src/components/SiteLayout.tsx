@@ -6,9 +6,13 @@ import { Marquee } from "./Marquee";
 const NAV = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
+  { to: "/results", label: "Results" },
   { to: "/past-papers", label: "Past Papers" },
   { to: "/register", label: "Register" },
 ] as const;
+
+export const NEW_EMAIL = "geometrymainsolympiad@gmail.com";
+export const OLD_EMAIL = "geometrymainsolympiad@outlook.com";
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
@@ -72,21 +76,40 @@ export function SiteLayout({ children }: { children: ReactNode }) {
 
       <main>{children}</main>
 
-      <footer className="border-t border-border">
-        <div className="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-10 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex items-center gap-3">
+      <footer className="border-t border-border bg-secondary/40">
+        <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:grid-cols-3">
+          <div className="flex items-start gap-3">
             <img src={logo.url} alt="" className="h-9 w-9 rounded-full" />
             <p className="text-sm text-muted-foreground">
               Geometry Mains Olympiad — since 2024
             </p>
           </div>
-          <nav className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+
+          <nav className="flex flex-col gap-2 text-sm text-muted-foreground">
             {NAV.map((item) => (
               <Link key={item.to} to={item.to} className="hover:text-chalk">
                 {item.label}
               </Link>
             ))}
           </nav>
+
+          <div className="text-sm">
+            <h2 className="font-display text-xs font-semibold uppercase tracking-[0.16em] text-chalk">
+              Contact
+            </h2>
+            <p className="mt-3 text-muted-foreground">
+              New email —{" "}
+              <a href={`mailto:${NEW_EMAIL}`} className="text-crimson underline">
+                {NEW_EMAIL}
+              </a>
+            </p>
+            <p className="mt-2 text-muted-foreground">
+              Old email (still monitored) —{" "}
+              <a href={`mailto:${OLD_EMAIL}`} className="hover:text-chalk">
+                {OLD_EMAIL}
+              </a>
+            </p>
+          </div>
         </div>
       </footer>
     </div>

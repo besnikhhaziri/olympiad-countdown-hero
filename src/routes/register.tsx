@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
-import { SiteLayout } from "@/components/SiteLayout";
+import { useEffect, useState } from "react";
+import { SiteLayout, NEW_EMAIL, OLD_EMAIL } from "@/components/SiteLayout";
 import { Countdown } from "@/components/Countdown";
 
 export const Route = createFileRoute("/register")({
@@ -10,7 +10,7 @@ export const Route = createFileRoute("/register")({
       {
         name: "description",
         content:
-          "Register your interest for the Geometry Mains Olympiad on November 14, 2026. Free entry, open to all secondary students.",
+          "Register your interest for the Geometry Mains Olympiad on November 14, 2026. Free entry, open to all secondary students, notified by email.",
       },
       { property: "og:title", content: "Register — Geometry Mains Olympiad 2026" },
       {
@@ -24,8 +24,37 @@ export const Route = createFileRoute("/register")({
   component: Register,
 });
 
+const BASE_INTEREST = 14;
+const KEY = "gmo-interest";
+
 function Register() {
   const [sent, setSent] = useState(false);
+  const [count, setCount] = useState<number | null>(null);
+
+  useEffect(() => {
+    setCount(BASE_INTEREST + Number(localStorage.getItem(KEY) ?? 0));
+  }, []);
+
+  function submit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
+    const body = [
+      `Name: ${data.get("name")}`,
+      `Email: ${data.get("email")}`,
+      `School: ${data.get("school")}`,
+      `Year / grade: ${data.get("grade")}`,
+      "",
+      "Please email me when registration for GMO 2026 opens.",
+    ].join("\n");
+
+    localStorage.setItem(KEY, String(Number(localStorage.getItem(KEY) ?? 0) + 1));
+    setCount((c) => (c ?? BASE_INTEREST) + 1);
+    setSent(true);
+
+    window.location.href = `mailto:${NEW_EMAIL}?subject=${encodeURIComponent(
+      "GMO 2026 — interest registration",
+    )}&body=${encodeURIComponent(body)}`;
+  }
 
   return (
     <SiteLayout>
@@ -35,8 +64,13 @@ function Register() {
             Register your interest
           </h1>
           <p className="mt-5 max-w-xl text-lg text-muted-foreground">
-            Entry is free. Leave your details and we'll email you the moment
-            registration opens, along with the exam instructions.
+            Entry is free. Leave your details and we'll{" "}
+            <strong className="text-chalk">email you the moment the
+            olympiad begins</strong>{" "}
+            — registration link, timing and exam instructions included.
+          </p>
+          <p className="mt-4 font-display text-sm font-semibold uppercase tracking-[0.16em] text-crimson">
+            {count === null ? "—" : count} people interested so far
           </p>
           <div className="mt-10 max-w-3xl">
             <Countdown />
@@ -51,16 +85,16 @@ function Register() {
               You're on the list
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              We'll be in touch well before November 14.
+              Your email app should have opened with your details — just hit
+              send. We'll email you from{" "}
+              <span className="text-chalk">{NEW_EMAIL}</span> well before
+              November 14.
             </p>
           </div>
         ) : (
           <form
-            className="space-y-5 rounded-2xl border border-border bg-card p-8"
-            onSubmit={(e) => {
-              e.preventDefault();
-              setSent(true);
-            }}
+            className="space-y-5 rounded-2xl border border-border bg-card p-8 shadow-sm"
+            onSubmit={submit}
           >
             {[
               { id: "name", label: "Full name", type: "text" },
@@ -106,11 +140,15 @@ function Register() {
               type="submit"
               className="w-full rounded-lg bg-crimson px-6 py-3 font-display text-sm font-semibold uppercase tracking-wide text-crimson-foreground transition-transform hover:-translate-y-0.5"
             >
-              Notify me
+              Notify me by email
             </button>
             <p className="text-center text-xs text-muted-foreground">
-              Details stay on this device for now — connect a backend to collect
-              real sign-ups.
+              Prefer to write to us directly?{" "}
+              <a href={`mailto:${NEW_EMAIL}`} className="text-crimson underline">
+                {NEW_EMAIL}
+              </a>
+              <br />
+              Our old address {OLD_EMAIL} still works too.
             </p>
           </form>
         )}

@@ -26,11 +26,12 @@ export const Route = createFileRoute("/")({
 });
 
 const FACTS = [
-  { k: "4", v: "Problems" },
+  { k: "14", v: "Participants in 2024" },
+  { k: "12", v: "Countries" },
   { k: "4h", v: "Time limit" },
-  { k: "28", v: "Points total" },
   { k: "2nd", v: "Edition" },
 ];
+
 
 function Home() {
   return (
@@ -65,6 +66,13 @@ function Home() {
               >
                 View 2024 paper
               </Link>
+              <Link
+                to="/results"
+                className="rounded-lg border border-border px-6 py-3 font-display text-sm font-semibold uppercase tracking-wide text-chalk transition-colors hover:bg-secondary"
+              >
+                2024 results
+              </Link>
+
             </div>
           </div>
 
