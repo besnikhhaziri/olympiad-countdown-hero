@@ -39,18 +39,25 @@ function PastPapers() {
       </section>
 
       <section className="mx-auto max-w-4xl space-y-6 px-5 py-16">
-        <article className="rounded-2xl border border-border bg-card p-8">
+        <article className="rounded-2xl border border-border bg-card p-8 shadow-sm">
           <div className="flex flex-wrap items-start justify-between gap-6">
             <div>
               <div className="text-xs uppercase tracking-[0.2em] text-crimson">
-                Edition I · November 2024
+                Edition I · November 2024 · 14 participants
               </div>
               <h2 className="mt-2 font-display text-2xl font-semibold text-chalk">
                 Geometry Mains Olympiad 2024
               </h2>
               <p className="mt-2 max-w-md text-sm text-muted-foreground">
-                The original paper: four problems, four hours. PDF, 166 KB.
+                The original paper, sat by 14 students from 12 countries. PDF,
+                166 KB.
               </p>
+              <Link
+                to="/results"
+                className="mt-3 inline-block text-sm text-crimson underline"
+              >
+                See the 2024 results
+              </Link>
             </div>
             <a
               href={paper2024.url}
@@ -58,10 +65,11 @@ function PastPapers() {
               rel="noopener noreferrer"
               className="rounded-lg bg-crimson px-6 py-3 font-display text-sm font-semibold uppercase tracking-wide text-crimson-foreground transition-transform hover:-translate-y-0.5"
             >
-              Open the paper
+              Download the paper
             </a>
           </div>
         </article>
+
 
         <article className="rounded-2xl border border-dashed border-border p-8 opacity-70">
           <div className="text-xs uppercase tracking-[0.2em] text-muted-foreground">

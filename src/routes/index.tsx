@@ -66,6 +66,13 @@ function Home() {
               >
                 View 2024 paper
               </Link>
+              <Link
+                to="/results"
+                className="rounded-lg border border-border px-6 py-3 font-display text-sm font-semibold uppercase tracking-wide text-chalk transition-colors hover:bg-secondary"
+              >
+                2024 results
+              </Link>
+
             </div>
           </div>
 
