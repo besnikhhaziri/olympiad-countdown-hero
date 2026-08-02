@@ -1,11 +1,12 @@
 const ITEMS = [
   "Geometry Mains Olympiad 2026",
-  "Registration opens soon",
+  "2024 results are out",
+  "14 participants · 12 countries",
   "November 14, 2026",
-  "One paper · Four problems · Four hours",
-  "Open to all secondary students",
-  "Second edition",
+  "One paper · Four hours",
+  "geometrymainsolympiad@gmail.com",
 ];
+
 
 export function Marquee() {
   const loop = [...ITEMS, ...ITEMS];
