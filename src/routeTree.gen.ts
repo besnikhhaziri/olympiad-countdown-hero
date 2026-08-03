@@ -13,7 +13,10 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ContributeRouteImport } from './routes/contribute'
+import { Route as MapRouteImport } from './routes/map'
 import { Route as PastPapersRouteImport } from './routes/past-papers'
+import { Route as ProposeRouteImport } from './routes/propose'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as ResultsRouteImport } from './routes/results'
@@ -39,9 +42,24 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContributeRoute = ContributeRouteImport.update({
+  id: '/contribute',
+  path: '/contribute',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapRoute = MapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PastPapersRoute = PastPapersRouteImport.update({
   id: '/past-papers',
   path: '/past-papers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProposeRoute = ProposeRouteImport.update({
+  id: '/propose',
+  path: '/propose',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RegisterRoute = RegisterRouteImport.update({
@@ -70,7 +88,10 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
+  '/contribute': typeof ContributeRoute
+  '/map': typeof MapRoute
   '/past-papers': typeof PastPapersRoute
+  '/propose': typeof ProposeRoute
   '/register': typeof RegisterRoute
   '/resources': typeof ResourcesRoute
   '/results': typeof ResultsRoute
@@ -81,7 +102,10 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
+  '/contribute': typeof ContributeRoute
+  '/map': typeof MapRoute
   '/past-papers': typeof PastPapersRoute
+  '/propose': typeof ProposeRoute
   '/register': typeof RegisterRoute
   '/resources': typeof ResourcesRoute
   '/results': typeof ResultsRoute
@@ -93,7 +117,10 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
+  '/contribute': typeof ContributeRoute
+  '/map': typeof MapRoute
   '/past-papers': typeof PastPapersRoute
+  '/propose': typeof ProposeRoute
   '/register': typeof RegisterRoute
   '/resources': typeof ResourcesRoute
   '/results': typeof ResultsRoute
@@ -106,7 +133,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/account'
     | '/auth'
+    | '/contribute'
+    | '/map'
     | '/past-papers'
+    | '/propose'
     | '/register'
     | '/resources'
     | '/results'
@@ -117,7 +147,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/account'
     | '/auth'
+    | '/contribute'
+    | '/map'
     | '/past-papers'
+    | '/propose'
     | '/register'
     | '/resources'
     | '/results'
@@ -128,7 +161,10 @@ export interface FileRouteTypes {
     | '/about'
     | '/account'
     | '/auth'
+    | '/contribute'
+    | '/map'
     | '/past-papers'
+    | '/propose'
     | '/register'
     | '/resources'
     | '/results'
@@ -140,7 +176,10 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AccountRoute: typeof AccountRoute
   AuthRoute: typeof AuthRoute
+  ContributeRoute: typeof ContributeRoute
+  MapRoute: typeof MapRoute
   PastPapersRoute: typeof PastPapersRoute
+  ProposeRoute: typeof ProposeRoute
   RegisterRoute: typeof RegisterRoute
   ResourcesRoute: typeof ResourcesRoute
   ResultsRoute: typeof ResultsRoute
@@ -177,11 +216,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contribute': {
+      id: '/contribute'
+      path: '/contribute'
+      fullPath: '/contribute'
+      preLoaderRoute: typeof ContributeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/map': {
+      id: '/map'
+      path: '/map'
+      fullPath: '/map'
+      preLoaderRoute: typeof MapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/past-papers': {
       id: '/past-papers'
       path: '/past-papers'
       fullPath: '/past-papers'
       preLoaderRoute: typeof PastPapersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/propose': {
+      id: '/propose'
+      path: '/propose'
+      fullPath: '/propose'
+      preLoaderRoute: typeof ProposeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/register': {
@@ -220,7 +280,10 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AccountRoute: AccountRoute,
   AuthRoute: AuthRoute,
+  ContributeRoute: ContributeRoute,
+  MapRoute: MapRoute,
   PastPapersRoute: PastPapersRoute,
+  ProposeRoute: ProposeRoute,
   RegisterRoute: RegisterRoute,
   ResourcesRoute: ResourcesRoute,
   ResultsRoute: ResultsRoute,
