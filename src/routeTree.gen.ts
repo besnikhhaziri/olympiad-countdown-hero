@@ -11,9 +11,16 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as AccountRouteImport } from './routes/account'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ContributeRouteImport } from './routes/contribute'
+import { Route as MapRouteImport } from './routes/map'
 import { Route as PastPapersRouteImport } from './routes/past-papers'
+import { Route as ProposeRouteImport } from './routes/propose'
 import { Route as RegisterRouteImport } from './routes/register'
+import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as ResultsRouteImport } from './routes/results'
+import { Route as StaffRouteImport } from './routes/staff'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -25,9 +32,34 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AccountRoute = AccountRouteImport.update({
+  id: '/account',
+  path: '/account',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContributeRoute = ContributeRouteImport.update({
+  id: '/contribute',
+  path: '/contribute',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MapRoute = MapRouteImport.update({
+  id: '/map',
+  path: '/map',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PastPapersRoute = PastPapersRouteImport.update({
   id: '/past-papers',
   path: '/past-papers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProposeRoute = ProposeRouteImport.update({
+  id: '/propose',
+  path: '/propose',
   getParentRoute: () => rootRouteImport,
 } as any)
 const RegisterRoute = RegisterRouteImport.update({
@@ -35,48 +67,123 @@ const RegisterRoute = RegisterRouteImport.update({
   path: '/register',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ResourcesRoute = ResourcesRouteImport.update({
+  id: '/resources',
+  path: '/resources',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResultsRoute = ResultsRouteImport.update({
   id: '/results',
   path: '/results',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StaffRoute = StaffRouteImport.update({
+  id: '/staff',
+  path: '/staff',
   getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/account': typeof AccountRoute
+  '/auth': typeof AuthRoute
+  '/contribute': typeof ContributeRoute
+  '/map': typeof MapRoute
   '/past-papers': typeof PastPapersRoute
+  '/propose': typeof ProposeRoute
   '/register': typeof RegisterRoute
+  '/resources': typeof ResourcesRoute
   '/results': typeof ResultsRoute
+  '/staff': typeof StaffRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/account': typeof AccountRoute
+  '/auth': typeof AuthRoute
+  '/contribute': typeof ContributeRoute
+  '/map': typeof MapRoute
   '/past-papers': typeof PastPapersRoute
+  '/propose': typeof ProposeRoute
   '/register': typeof RegisterRoute
+  '/resources': typeof ResourcesRoute
   '/results': typeof ResultsRoute
+  '/staff': typeof StaffRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/account': typeof AccountRoute
+  '/auth': typeof AuthRoute
+  '/contribute': typeof ContributeRoute
+  '/map': typeof MapRoute
   '/past-papers': typeof PastPapersRoute
+  '/propose': typeof ProposeRoute
   '/register': typeof RegisterRoute
+  '/resources': typeof ResourcesRoute
   '/results': typeof ResultsRoute
+  '/staff': typeof StaffRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/past-papers' | '/register' | '/results'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/account'
+    | '/auth'
+    | '/contribute'
+    | '/map'
+    | '/past-papers'
+    | '/propose'
+    | '/register'
+    | '/resources'
+    | '/results'
+    | '/staff'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/past-papers' | '/register' | '/results'
-  id: '__root__' | '/' | '/about' | '/past-papers' | '/register' | '/results'
+  to:
+    | '/'
+    | '/about'
+    | '/account'
+    | '/auth'
+    | '/contribute'
+    | '/map'
+    | '/past-papers'
+    | '/propose'
+    | '/register'
+    | '/resources'
+    | '/results'
+    | '/staff'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/account'
+    | '/auth'
+    | '/contribute'
+    | '/map'
+    | '/past-papers'
+    | '/propose'
+    | '/register'
+    | '/resources'
+    | '/results'
+    | '/staff'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  AccountRoute: typeof AccountRoute
+  AuthRoute: typeof AuthRoute
+  ContributeRoute: typeof ContributeRoute
+  MapRoute: typeof MapRoute
   PastPapersRoute: typeof PastPapersRoute
+  ProposeRoute: typeof ProposeRoute
   RegisterRoute: typeof RegisterRoute
+  ResourcesRoute: typeof ResourcesRoute
   ResultsRoute: typeof ResultsRoute
+  StaffRoute: typeof StaffRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -95,11 +202,46 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/account': {
+      id: '/account'
+      path: '/account'
+      fullPath: '/account'
+      preLoaderRoute: typeof AccountRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contribute': {
+      id: '/contribute'
+      path: '/contribute'
+      fullPath: '/contribute'
+      preLoaderRoute: typeof ContributeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/map': {
+      id: '/map'
+      path: '/map'
+      fullPath: '/map'
+      preLoaderRoute: typeof MapRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/past-papers': {
       id: '/past-papers'
       path: '/past-papers'
       fullPath: '/past-papers'
       preLoaderRoute: typeof PastPapersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/propose': {
+      id: '/propose'
+      path: '/propose'
+      fullPath: '/propose'
+      preLoaderRoute: typeof ProposeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/register': {
@@ -109,11 +251,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegisterRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/resources': {
+      id: '/resources'
+      path: '/resources'
+      fullPath: '/resources'
+      preLoaderRoute: typeof ResourcesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/results': {
       id: '/results'
       path: '/results'
       fullPath: '/results'
       preLoaderRoute: typeof ResultsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/staff': {
+      id: '/staff'
+      path: '/staff'
+      fullPath: '/staff'
+      preLoaderRoute: typeof StaffRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -122,9 +278,16 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  AccountRoute: AccountRoute,
+  AuthRoute: AuthRoute,
+  ContributeRoute: ContributeRoute,
+  MapRoute: MapRoute,
   PastPapersRoute: PastPapersRoute,
+  ProposeRoute: ProposeRoute,
   RegisterRoute: RegisterRoute,
+  ResourcesRoute: ResourcesRoute,
   ResultsRoute: ResultsRoute,
+  StaffRoute: StaffRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
