@@ -104,8 +104,16 @@ function Staff() {
             </a>
             .
           </p>
+          <p className="mt-4 text-sm text-muted-foreground">
+            Staff: manage the map at{" "}
+            <a href="/staff-admin" className="text-crimson underline">
+              participation admin
+            </a>
+            .
+          </p>
         </div>
       </section>
+
     </SiteLayout>
   );
 }
