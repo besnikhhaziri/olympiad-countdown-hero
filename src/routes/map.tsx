@@ -58,9 +58,21 @@ function MapPage() {
     },
   });
 
+  const { data: recorded = [] } = useQuery({
+    queryKey: ["map-participation"],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from("country_participation")
+        .select("country, participants");
+      return data ?? [];
+    },
+  });
+
   const totals = new Map<string, number>();
-  for (const [name, n] of Object.entries(EDITION_2024)) totals.set(name, n);
+  for (const row of recorded)
+    totals.set(row.country, (totals.get(row.country) ?? 0) + row.participants);
   for (const name of members) totals.set(name, (totals.get(name) ?? 0) + 1);
+
 
   const mapData = [...totals.entries()]
     .map(([name, value]) => {
