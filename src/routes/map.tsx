@@ -26,19 +26,8 @@ export const Route = createFileRoute("/map")({
   component: MapPage,
 });
 
-const EDITION_2024: Record<string, number> = {
-  "El Salvador": 1,
-  Kosovo: 1,
-  Brazil: 2,
-  Ukraine: 3,
-  India: 1,
-  Russia: 1,
-  Libya: 1,
-  Croatia: 1,
-  Malaysia: 1,
-  Cyprus: 1,
-  Australia: 1,
-};
+
+
 
 const ALIASES: Record<string, string> = {
   kosovo: "XK",
