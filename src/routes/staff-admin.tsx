@@ -79,7 +79,10 @@ function StaffAdmin() {
 
   async function addEntry(e: React.FormEvent) {
     e.preventDefault();
-    if (!country) return toast.error("Pick a country");
+    if (!country) {
+      toast.error("Pick a country");
+      return;
+    }
     setBusy(true);
     const { error } = await supabase
       .from("country_participation")
