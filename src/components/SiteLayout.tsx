@@ -65,7 +65,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-50 border-b border-border bg-background/85 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3">
+        <div className="mx-auto flex max-w-7xl items-center gap-4 px-5 py-3">
           <Link to="/" className="flex shrink-0 items-center gap-3">
             <img
               src={logo.url}
@@ -79,39 +79,43 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             </span>
           </Link>
 
-          <nav className="hidden flex-wrap items-center justify-center gap-0.5 lg:flex">
+          <nav className="ml-auto hidden min-w-0 items-center gap-0.5 rounded-full bg-secondary/50 p-1 lg:flex">
             {NAV.map((item) => (
               <Link
                 key={item.to}
                 to={item.to}
-                activeProps={{ className: "bg-secondary text-chalk" }}
-                className="rounded-md px-2.5 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-chalk"
+                activeProps={{
+                  className: "bg-background text-chalk shadow-sm",
+                }}
+                className="whitespace-nowrap rounded-full px-3 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:text-chalk"
               >
                 {item.label}
               </Link>
             ))}
           </nav>
 
-          <div className="hidden shrink-0 items-center gap-3 lg:flex">
+          <div className="hidden shrink-0 items-center gap-2 lg:flex">
             <ThemeToggle />
             <a
               href={DISCORD_URL}
               target="_blank"
               rel="noreferrer"
-              className="rounded-lg border border-border px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-chalk hover:bg-secondary"
+              className="rounded-full border border-border px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-chalk hover:bg-secondary"
             >
               Discord
             </a>
             <AuthLinks />
           </div>
 
+
           <button
             onClick={() => setOpen((v) => !v)}
-            className="rounded-md border border-border px-3 py-2 text-sm text-chalk lg:hidden"
+            className="ml-auto rounded-full border border-border px-4 py-2 text-sm text-chalk lg:hidden"
             aria-label="Toggle menu"
           >
             Menu
           </button>
+
         </div>
 
         {open && (
