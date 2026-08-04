@@ -26,19 +26,8 @@ export const Route = createFileRoute("/map")({
   component: MapPage,
 });
 
-const EDITION_2024: Record<string, number> = {
-  "El Salvador": 1,
-  Kosovo: 1,
-  Brazil: 2,
-  Ukraine: 3,
-  India: 1,
-  Russia: 1,
-  Libya: 1,
-  Croatia: 1,
-  Malaysia: 1,
-  Cyprus: 1,
-  Australia: 1,
-};
+
+
 
 const ALIASES: Record<string, string> = {
   kosovo: "XK",
@@ -69,9 +58,21 @@ function MapPage() {
     },
   });
 
+  const { data: recorded = [] } = useQuery({
+    queryKey: ["map-participation"],
+    queryFn: async () => {
+      const { data } = await supabase
+        .from("country_participation")
+        .select("country, participants");
+      return data ?? [];
+    },
+  });
+
   const totals = new Map<string, number>();
-  for (const [name, n] of Object.entries(EDITION_2024)) totals.set(name, n);
+  for (const row of recorded)
+    totals.set(row.country, (totals.get(row.country) ?? 0) + row.participants);
   for (const name of members) totals.set(name, (totals.get(name) ?? 0) + 1);
+
 
   const mapData = [...totals.entries()]
     .map(([name, value]) => {
