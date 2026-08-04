@@ -91,7 +91,10 @@ function StaffAdmin() {
         { onConflict: "country,edition" },
       );
     setBusy(false);
-    if (error) return toast.error(error.message);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     toast.success(`${country} saved for ${edition}`);
     setCountry("");
     setParticipants(1);
