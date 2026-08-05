@@ -48,29 +48,23 @@ export function useTheme() {
 }
 
 export function ThemeToggle({ className = "" }: { className?: string }) {
-  const { theme, setTheme } = useTheme();
+  const { theme, toggle } = useTheme();
 
   return (
-    <div
-      role="group"
-      aria-label="Colour theme"
-      className={`inline-flex items-center rounded-full border border-border p-0.5 ${className}`}
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label={theme === "white" ? "Switch to green theme" : "Switch to white theme"}
+      title={theme === "white" ? "Switch to green theme" : "Switch to white theme"}
+      className={`group inline-flex items-center justify-center rounded-full border border-border bg-secondary/50 p-2.5 transition-all hover:scale-105 hover:bg-background hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${className}`}
     >
-      {(["white", "green"] as const).map((t) => (
-        <button
-          key={t}
-          type="button"
-          onClick={() => setTheme(t)}
-          aria-pressed={theme === t}
-          className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] transition-colors ${
-            theme === t
-              ? "bg-primary text-primary-foreground"
-              : "text-muted-foreground hover:text-chalk"
-          }`}
-        >
-          {t}
-        </button>
-      ))}
-    </div>
+      <span
+        className="relative flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-primary to-crimson transition-transform duration-300 group-hover:rotate-90"
+        aria-hidden="true"
+      >
+        <span className="h-2.5 w-2.5 rounded-full bg-primary-foreground" />
+      </span>
+    </button>
   );
 }
+
