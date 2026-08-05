@@ -59,18 +59,22 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
       onClick={toggle}
       aria-label={isGreen ? "Switch to white theme" : "Switch to green theme"}
       title={isGreen ? "Switch to white theme" : "Switch to green theme"}
-      className={`group relative inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background px-3 py-2 text-sm font-medium text-chalk transition-all hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${className}`}
+      className={`group relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background text-chalk transition-all hover:scale-105 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${className}`}
     >
       <span
-        className={`flex h-6 w-6 items-center justify-center rounded-full transition-colors duration-300 ${
-          isGreen ? "bg-primary text-primary-foreground" : "bg-crimson text-crimson-foreground"
+        className={`absolute inset-0 rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${
+          isGreen ? "bg-primary/10" : "bg-crimson/10"
         }`}
-      >
-        <Palette className="h-3.5 w-3.5" />
-      </span>
-      <span className="hidden sm:inline">{isGreen ? "White" : "Green"}</span>
+        aria-hidden="true"
+      />
+      <Palette
+        className={`relative h-5 w-5 transition-colors duration-300 ${
+          isGreen ? "text-primary" : "text-crimson"
+        }`}
+      />
     </button>
   );
 }
+
 
 
