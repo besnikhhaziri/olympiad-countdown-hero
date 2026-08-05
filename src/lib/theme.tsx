@@ -6,6 +6,8 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { Palette } from "lucide-react";
+
 
 export type Theme = "white" | "green";
 const KEY = "gmo-theme";
