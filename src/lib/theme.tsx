@@ -6,6 +6,8 @@ import {
   useState,
   type ReactNode,
 } from "react";
+import { Palette } from "lucide-react";
+
 
 export type Theme = "white" | "green";
 const KEY = "gmo-theme";
@@ -48,29 +50,31 @@ export function useTheme() {
 }
 
 export function ThemeToggle({ className = "" }: { className?: string }) {
-  const { theme, setTheme } = useTheme();
+  const { theme, toggle } = useTheme();
+  const isGreen = theme === "green";
 
   return (
-    <div
-      role="group"
-      aria-label="Colour theme"
-      className={`inline-flex items-center rounded-full border border-border p-0.5 ${className}`}
+    <button
+      type="button"
+      onClick={toggle}
+      aria-label={isGreen ? "Switch to white theme" : "Switch to green theme"}
+      title={isGreen ? "Switch to white theme" : "Switch to green theme"}
+      className={`group relative inline-flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background text-chalk transition-all hover:scale-105 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${className}`}
     >
-      {(["white", "green"] as const).map((t) => (
-        <button
-          key={t}
-          type="button"
-          onClick={() => setTheme(t)}
-          aria-pressed={theme === t}
-          className={`rounded-full px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] transition-colors ${
-            theme === t
-              ? "bg-primary text-primary-foreground"
-              : "text-muted-foreground hover:text-chalk"
-          }`}
-        >
-          {t}
-        </button>
-      ))}
-    </div>
+      <span
+        className={`absolute inset-0 rounded-full opacity-0 transition-opacity duration-300 group-hover:opacity-100 ${
+          isGreen ? "bg-primary/10" : "bg-crimson/10"
+        }`}
+        aria-hidden="true"
+      />
+      <Palette
+        className={`relative h-5 w-5 transition-colors duration-300 ${
+          isGreen ? "text-primary" : "text-crimson"
+        }`}
+      />
+    </button>
   );
 }
+
+
+
