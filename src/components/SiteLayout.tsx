@@ -42,28 +42,35 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             </span>
           </Link>
 
-          <nav className="ml-auto hidden flex-wrap items-center justify-end gap-0.5 rounded-full bg-secondary/50 p-1 xl:flex">
-            {NAV.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                activeProps={{
-                  className: "bg-background text-chalk shadow-sm",
-                }}
-                className="whitespace-nowrap rounded-full px-3 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:text-chalk"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+          <div className="ml-auto hidden items-center gap-3 xl:flex">
+            <nav className="flex flex-wrap items-center justify-end gap-0.5 rounded-full bg-secondary/50 p-1">
+              {NAV.map((item) => (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  activeProps={{
+                    className: "bg-background text-chalk shadow-sm",
+                  }}
+                  className="whitespace-nowrap rounded-full px-3 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:text-chalk"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+            <ThemeToggle />
+          </div>
 
-          <button
-            onClick={() => setOpen((v) => !v)}
-            className="ml-auto rounded-full border border-border px-4 py-2 text-sm text-chalk xl:hidden"
-            aria-label="Toggle menu"
-          >
-            Menu
-          </button>
+          <div className="ml-auto flex items-center gap-3 xl:hidden">
+            <ThemeToggle />
+            <button
+              onClick={() => setOpen((v) => !v)}
+              className="rounded-full border border-border px-4 py-2 text-sm text-chalk"
+              aria-label="Toggle menu"
+            >
+              Menu
+            </button>
+          </div>
+
         </div>
 
         {open && (
