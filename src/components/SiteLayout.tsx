@@ -2,8 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import logo from "@/assets/gmo-logo.jpg.asset.json";
 import { Marquee } from "./Marquee";
-import { ThemeToggle } from "@/lib/theme";
-import { useAuth } from "@/lib/auth";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -21,43 +19,6 @@ const NAV = [
 export const NEW_EMAIL = "geometrymainsolympiad@gmail.com";
 export const OLD_EMAIL = "geometrymainsolympiad@outlook.com";
 export const DISCORD_URL = "https://discord.gg/geometrymains";
-
-function AuthLinks({ onNavigate }: { onNavigate?: () => void }) {
-  const { user, profile, signOut } = useAuth();
-
-  if (!user) {
-    return (
-      <Link
-        to="/auth"
-        onClick={onNavigate}
-        className="rounded-lg bg-crimson px-4 py-2 font-display text-xs font-semibold uppercase tracking-[0.14em] text-crimson-foreground"
-      >
-        Sign in
-      </Link>
-    );
-  }
-
-  return (
-    <div className="flex items-center gap-2">
-      <Link
-        to="/account"
-        onClick={onNavigate}
-        className="rounded-lg border border-border px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-chalk"
-      >
-        {profile?.display_name?.split(" ")[0] ?? "Account"}
-      </Link>
-      <button
-        onClick={() => {
-          onNavigate?.();
-          void signOut();
-        }}
-        className="text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-chalk"
-      >
-        Sign out
-      </button>
-    </div>
-  );
-}
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
