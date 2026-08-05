@@ -40,6 +40,8 @@ function Register() {
     const data = new FormData(e.currentTarget);
     const body = [
       `Name: ${data.get("name")}`,
+      `Surname: ${data.get("surname")}`,
+      `Country: ${data.get("country")}`,
       `Email: ${data.get("email")}`,
       `School: ${data.get("school")}`,
       `Year / grade: ${data.get("grade")}`,
