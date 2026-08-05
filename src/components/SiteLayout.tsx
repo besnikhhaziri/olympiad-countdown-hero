@@ -2,6 +2,8 @@ import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import logo from "@/assets/gmo-logo.jpg.asset.json";
 import { Marquee } from "./Marquee";
+import { ThemeToggle } from "@/lib/theme";
+
 
 const NAV = [
   { to: "/", label: "Home" },
