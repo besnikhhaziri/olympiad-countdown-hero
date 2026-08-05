@@ -2,8 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
 import logo from "@/assets/gmo-logo.jpg.asset.json";
 import { Marquee } from "./Marquee";
-import { ThemeToggle } from "@/lib/theme";
-import { useAuth } from "@/lib/auth";
 
 const NAV = [
   { to: "/", label: "Home" },
@@ -21,43 +19,6 @@ const NAV = [
 export const NEW_EMAIL = "geometrymainsolympiad@gmail.com";
 export const OLD_EMAIL = "geometrymainsolympiad@outlook.com";
 export const DISCORD_URL = "https://discord.gg/geometrymains";
-
-function AuthLinks({ onNavigate }: { onNavigate?: () => void }) {
-  const { user, profile, signOut } = useAuth();
-
-  if (!user) {
-    return (
-      <Link
-        to="/auth"
-        onClick={onNavigate}
-        className="rounded-lg bg-crimson px-4 py-2 font-display text-xs font-semibold uppercase tracking-[0.14em] text-crimson-foreground"
-      >
-        Sign in
-      </Link>
-    );
-  }
-
-  return (
-    <div className="flex items-center gap-2">
-      <Link
-        to="/account"
-        onClick={onNavigate}
-        className="rounded-lg border border-border px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-chalk"
-      >
-        {profile?.display_name?.split(" ")[0] ?? "Account"}
-      </Link>
-      <button
-        onClick={() => {
-          onNavigate?.();
-          void signOut();
-        }}
-        className="text-xs uppercase tracking-[0.14em] text-muted-foreground hover:text-chalk"
-      >
-        Sign out
-      </button>
-    </div>
-  );
-}
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
@@ -79,7 +40,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             </span>
           </Link>
 
-          <nav className="ml-auto hidden min-w-0 items-center gap-0.5 rounded-full bg-secondary/50 p-1 lg:flex">
+          <nav className="ml-auto hidden flex-wrap items-center justify-end gap-0.5 rounded-full bg-secondary/50 p-1 xl:flex">
             {NAV.map((item) => (
               <Link
                 key={item.to}
@@ -94,32 +55,17 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             ))}
           </nav>
 
-          <div className="hidden shrink-0 items-center gap-2 lg:flex">
-            <ThemeToggle />
-            <a
-              href={DISCORD_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-full border border-border px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-chalk hover:bg-secondary"
-            >
-              Discord
-            </a>
-            <AuthLinks />
-          </div>
-
-
           <button
             onClick={() => setOpen((v) => !v)}
-            className="ml-auto rounded-full border border-border px-4 py-2 text-sm text-chalk lg:hidden"
+            className="ml-auto rounded-full border border-border px-4 py-2 text-sm text-chalk xl:hidden"
             aria-label="Toggle menu"
           >
             Menu
           </button>
-
         </div>
 
         {open && (
-          <nav className="flex flex-col gap-1 border-t border-border px-5 py-3 lg:hidden">
+          <nav className="flex flex-col gap-1 border-t border-border px-5 py-3 xl:hidden">
             {NAV.map((item) => (
               <Link
                 key={item.to}
@@ -130,18 +76,6 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 {item.label}
               </Link>
             ))}
-            <a
-              href={DISCORD_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="py-2 text-sm text-muted-foreground"
-            >
-              Discord server
-            </a>
-            <div className="flex items-center justify-between gap-3 border-t border-border pt-3">
-              <ThemeToggle />
-              <AuthLinks onNavigate={() => setOpen(false)} />
-            </div>
           </nav>
         )}
       </header>
