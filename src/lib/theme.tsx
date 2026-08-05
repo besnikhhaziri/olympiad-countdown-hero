@@ -51,22 +51,26 @@ export function useTheme() {
 
 export function ThemeToggle({ className = "" }: { className?: string }) {
   const { theme, toggle } = useTheme();
+  const isGreen = theme === "green";
 
   return (
     <button
       type="button"
       onClick={toggle}
-      aria-label={theme === "white" ? "Switch to green theme" : "Switch to white theme"}
-      title={theme === "white" ? "Switch to green theme" : "Switch to white theme"}
-      className={`group inline-flex items-center justify-center rounded-full border border-border bg-secondary/50 p-2.5 transition-all hover:scale-105 hover:bg-background hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${className}`}
+      aria-label={isGreen ? "Switch to white theme" : "Switch to green theme"}
+      title={isGreen ? "Switch to white theme" : "Switch to green theme"}
+      className={`group relative inline-flex items-center justify-center gap-2 rounded-full border border-border bg-background px-3 py-2 text-sm font-medium text-chalk transition-all hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring ${className}`}
     >
       <span
-        className="relative flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-primary to-crimson transition-transform duration-300 group-hover:rotate-90"
-        aria-hidden="true"
+        className={`flex h-6 w-6 items-center justify-center rounded-full transition-colors duration-300 ${
+          isGreen ? "bg-primary text-primary-foreground" : "bg-crimson text-crimson-foreground"
+        }`}
       >
-        <span className="h-2.5 w-2.5 rounded-full bg-primary-foreground" />
+        <Palette className="h-3.5 w-3.5" />
       </span>
+      <span className="hidden sm:inline">{isGreen ? "White" : "Green"}</span>
     </button>
   );
 }
+
 
