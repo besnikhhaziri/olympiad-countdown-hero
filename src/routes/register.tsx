@@ -99,7 +99,8 @@ function Register() {
             onSubmit={submit}
           >
             {[
-              { id: "name", label: "Full name", type: "text" },
+              { id: "name", label: "Name", type: "text" },
+              { id: "surname", label: "Surname", type: "text" },
               { id: "email", label: "Email address", type: "email" },
               { id: "school", label: "School", type: "text" },
             ].map((f) => (
@@ -119,6 +120,32 @@ function Register() {
                 />
               </div>
             ))}
+
+            <div>
+              <label
+                htmlFor="country"
+                className="block text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground"
+              >
+                Country
+              </label>
+              <select
+                id="country"
+                name="country"
+                required
+                defaultValue=""
+                className="mt-2 w-full rounded-lg border border-input bg-background px-4 py-3 text-sm text-chalk outline-none focus:border-crimson"
+              >
+                <option value="" disabled>
+                  Select your country
+                </option>
+                {COUNTRIES.map((c) => (
+                  <option key={c.code} value={c.name}>
+                    {c.name}
+                  </option>
+                ))}
+              </select>
+            </div>
+
 
             <div>
               <label
