@@ -40,7 +40,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             </span>
           </Link>
 
-          <nav className="ml-auto hidden min-w-0 items-center gap-0.5 rounded-full bg-secondary/50 p-1 lg:flex">
+          <nav className="ml-auto hidden flex-wrap items-center justify-end gap-0.5 rounded-full bg-secondary/50 p-1 xl:flex">
             {NAV.map((item) => (
               <Link
                 key={item.to}
@@ -55,32 +55,17 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             ))}
           </nav>
 
-          <div className="hidden shrink-0 items-center gap-2 lg:flex">
-            <ThemeToggle />
-            <a
-              href={DISCORD_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="rounded-full border border-border px-3 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-chalk hover:bg-secondary"
-            >
-              Discord
-            </a>
-            <AuthLinks />
-          </div>
-
-
           <button
             onClick={() => setOpen((v) => !v)}
-            className="ml-auto rounded-full border border-border px-4 py-2 text-sm text-chalk lg:hidden"
+            className="ml-auto rounded-full border border-border px-4 py-2 text-sm text-chalk xl:hidden"
             aria-label="Toggle menu"
           >
             Menu
           </button>
-
         </div>
 
         {open && (
-          <nav className="flex flex-col gap-1 border-t border-border px-5 py-3 lg:hidden">
+          <nav className="flex flex-col gap-1 border-t border-border px-5 py-3 xl:hidden">
             {NAV.map((item) => (
               <Link
                 key={item.to}
@@ -91,18 +76,6 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                 {item.label}
               </Link>
             ))}
-            <a
-              href={DISCORD_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="py-2 text-sm text-muted-foreground"
-            >
-              Discord server
-            </a>
-            <div className="flex items-center justify-between gap-3 border-t border-border pt-3">
-              <ThemeToggle />
-              <AuthLinks onNavigate={() => setOpen(false)} />
-            </div>
           </nav>
         )}
       </header>
