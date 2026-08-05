@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { SiteLayout, NEW_EMAIL, OLD_EMAIL } from "@/components/SiteLayout";
 import { Countdown } from "@/components/Countdown";
+import { COUNTRIES } from "@/lib/countries";
 
 export const Route = createFileRoute("/register")({
   head: () => ({
