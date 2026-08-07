@@ -26,11 +26,12 @@ export const Route = createFileRoute("/")({
 });
 
 const FACTS = [
-  { k: "14", v: "Participants in 2024" },
-  { k: "12", v: "Countries" },
+  { k: "4", v: "Problems" },
   { k: "4h", v: "Time limit" },
+  { k: "Free", v: "Entry" },
   { k: "2nd", v: "Edition" },
 ];
+
 
 
 function Home() {

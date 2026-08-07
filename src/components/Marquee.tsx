@@ -1,11 +1,11 @@
 const ITEMS = [
   "Geometry Mains Olympiad 2026",
   "2024 results are out",
-  "14 participants · 12 countries",
   "November 14, 2026",
   "One paper · Four hours",
   "geometrymainsolympiad@gmail.com",
 ];
+
 
 
 export function Marquee() {

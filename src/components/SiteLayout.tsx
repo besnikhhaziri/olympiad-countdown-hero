@@ -20,7 +20,7 @@ const NAV = [
 
 export const NEW_EMAIL = "geometrymainsolympiad@gmail.com";
 export const OLD_EMAIL = "geometrymainsolympiad@outlook.com";
-export const DISCORD_URL = "https://discord.gg/geometrymains";
+export const DISCORD_URL = "https://discord.gg/MMV4hHE8z";
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
