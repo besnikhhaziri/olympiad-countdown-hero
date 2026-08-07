@@ -39,9 +39,7 @@ export function WorldParticipation({ data }: { data: MapDatum[] }) {
           backgroundColor="transparent"
           strokeOpacity={0.6}
           richInteraction
-          tooltipTextFunction={({ countryName, countryValue }) =>
-            `${countryName}: ${countryValue} participant${countryValue === 1 ? "" : "s"}`
-          }
+          tooltipTextFunction={({ countryName }) => `${countryName}`}
         />
       </Suspense>
     </div>

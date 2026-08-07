@@ -8,13 +8,13 @@ export const Route = createFileRoute("/results")({
       {
         name: "description",
         content:
-          "Full results of the first Geometry Mains Olympiad, November 2024: 14 participants, perfect scores, gold, silver, bronze and honourable mentions.",
+          "Full results of the first Geometry Mains Olympiad, November 2024: perfect scores, gold, silver, bronze and honourable mentions.",
       },
       { property: "og:title", content: "Geometry Mains Olympiad 2024 Results" },
       {
         property: "og:description",
         content:
-          "Perfect scores, medals and honourable mentions from the first edition — 14 participants from 12 countries.",
+          "Perfect scores, medals and honourable mentions from the first edition of the olympiad.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
