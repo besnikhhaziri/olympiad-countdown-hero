@@ -12,7 +12,7 @@ export const Route = createFileRoute("/map")({
       {
         name: "description",
         content:
-          "See every country taking part in the Geometry Mains Olympiad, from the 12 countries of the 2024 edition to everyone signing up for 2026.",
+          "See every country taking part in the Geometry Mains Olympiad.",
       },
       { property: "og:title", content: "Where the Geometry Mains Olympiad is solved" },
       {
@@ -105,32 +105,28 @@ function MapPage() {
       <section className="mx-auto max-w-5xl px-5 py-14">
         <WorldParticipation data={mapData} />
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-3">
-          {[
-            [String(totals.size), "Countries on the map"],
-            [String(members.length), "Registered members"],
-            ["14", "Participants in 2024"],
-          ].map(([k, v]) => (
-            <div key={v} className="rounded-xl border border-border bg-card p-5">
-              <div className="font-display text-3xl font-bold text-crimson">{k}</div>
-              <div className="mt-1 text-xs uppercase tracking-[0.16em] text-muted-foreground">
-                {v}
-              </div>
+        <div className="mt-10 max-w-xs">
+          <div className="rounded-xl border border-border bg-card p-5">
+            <div className="font-display text-3xl font-bold text-crimson">
+              {totals.size}
             </div>
-          ))}
+            <div className="mt-1 text-xs uppercase tracking-[0.16em] text-muted-foreground">
+              Countries on the map
+            </div>
+          </div>
         </div>
+
 
         <h2 className="mt-12 font-display text-2xl font-semibold text-chalk">
           Country breakdown
         </h2>
         <div className="mt-5 flex flex-wrap gap-2">
-          {sorted.map(([name, n]) => (
+          {sorted.map(([name]) => (
             <span
               key={name}
               className="rounded-full border border-border bg-card px-4 py-1.5 text-sm text-chalk"
             >
               {name}
-              <span className="ml-2 font-display text-xs font-bold text-crimson">{n}</span>
             </span>
           ))}
         </div>

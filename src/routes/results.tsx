@@ -8,13 +8,13 @@ export const Route = createFileRoute("/results")({
       {
         name: "description",
         content:
-          "Full results of the first Geometry Mains Olympiad, November 2024: 14 participants, perfect scores, gold, silver, bronze and honourable mentions.",
+          "Full results of the first Geometry Mains Olympiad, November 2024: perfect scores, gold, silver, bronze and honourable mentions.",
       },
       { property: "og:title", content: "Geometry Mains Olympiad 2024 Results" },
       {
         property: "og:description",
         content:
-          "Perfect scores, medals and honourable mentions from the first edition — 14 participants from 12 countries.",
+          "Perfect scores, medals and honourable mentions from the first edition of the olympiad.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -74,15 +74,16 @@ function Results() {
             Results
           </h1>
           <p className="mt-5 max-w-xl text-lg text-muted-foreground">
-            14 students from 12 countries sat the very first Geometry Mains
+            Students from around the world sat the very first Geometry Mains
             Olympiad. Thanks for participating — here is how it finished.
           </p>
           <div className="mt-8 grid gap-4 sm:grid-cols-3">
             {[
-              ["14", "Participants"],
-              ["12", "Countries"],
               ["3", "Perfect scores"],
+              ["1", "Gold"],
+              ["4h", "Time limit"],
             ].map(([k, v]) => (
+
               <div key={v} className="rounded-xl border border-border bg-card p-5">
                 <div className="font-display text-3xl font-bold text-crimson">
                   {k}
