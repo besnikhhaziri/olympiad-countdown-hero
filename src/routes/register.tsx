@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { toast } from "sonner";
 import { SiteLayout, NEW_EMAIL, OLD_EMAIL } from "@/components/SiteLayout";
 import { Countdown } from "@/components/Countdown";
 import { COUNTRIES } from "@/lib/countries";
+import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/register")({
   head: () => ({
@@ -25,38 +27,34 @@ export const Route = createFileRoute("/register")({
   component: Register,
 });
 
-const BASE_INTEREST = 14;
-const KEY = "gmo-interest";
-
 function Register() {
   const [sent, setSent] = useState(false);
-  const [count, setCount] = useState<number | null>(null);
+  const [busy, setBusy] = useState(false);
 
-  useEffect(() => {
-    setCount(BASE_INTEREST + Number(localStorage.getItem(KEY) ?? 0));
-  }, []);
-
-  function submit(e: React.FormEvent<HTMLFormElement>) {
+  async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
-    const body = [
-      `Name: ${data.get("name")}`,
-      `Surname: ${data.get("surname")}`,
-      `Country: ${data.get("country")}`,
-      `Email: ${data.get("email")}`,
-      `School: ${data.get("school")}`,
-      `Year / grade: ${data.get("grade")}`,
-      "",
-      "Please email me when registration for GMO 2026 opens.",
-    ].join("\n");
-
-    localStorage.setItem(KEY, String(Number(localStorage.getItem(KEY) ?? 0) + 1));
-    setCount((c) => (c ?? BASE_INTEREST) + 1);
+    const f = new FormData(e.currentTarget);
+    const email = String(f.get("email") ?? "").trim();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+    setBusy(true);
+    const { error } = await supabase.from("interest_registrations").insert({
+      first_name: String(f.get("name") ?? "").trim().slice(0, 120),
+      last_name: String(f.get("surname") ?? "").trim().slice(0, 120),
+      email: email.slice(0, 255),
+      country: String(f.get("country") ?? "").slice(0, 100),
+      school: String(f.get("school") ?? "").trim().slice(0, 200),
+      grade: String(f.get("grade") ?? "").slice(0, 40),
+    });
+    setBusy(false);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     setSent(true);
-
-    window.location.href = `mailto:${NEW_EMAIL}?subject=${encodeURIComponent(
-      "GMO 2026 — interest registration",
-    )}&body=${encodeURIComponent(body)}`;
+    toast.success("You're on the list — we'll email you.");
   }
 
   return (
@@ -68,12 +66,10 @@ function Register() {
           </h1>
           <p className="mt-5 max-w-xl text-lg text-muted-foreground">
             Entry is free. Leave your details and we'll{" "}
-            <strong className="text-chalk">email you the moment the
-            olympiad begins</strong>{" "}
+            <strong className="text-chalk">
+              email you the moment the olympiad begins
+            </strong>{" "}
             — registration link, timing and exam instructions included.
-          </p>
-          <p className="mt-4 font-display text-sm font-semibold uppercase tracking-[0.16em] text-crimson">
-            {count === null ? "—" : count} people interested so far
           </p>
           <div className="mt-10 max-w-3xl">
             <Countdown />
@@ -88,10 +84,8 @@ function Register() {
               You're on the list
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Your email app should have opened with your details — just hit
-              send. We'll email you from{" "}
-              <span className="text-chalk">{NEW_EMAIL}</span> well before
-              November 14.
+              We've saved your details. We'll email you from{" "}
+              <span className="text-chalk">{NEW_EMAIL}</span> well before November 14.
             </p>
           </div>
         ) : (
@@ -117,6 +111,7 @@ function Register() {
                   name={f.id}
                   type={f.type}
                   required
+                  maxLength={200}
                   className="mt-2 w-full rounded-lg border border-input bg-background px-4 py-3 text-sm text-chalk outline-none focus:border-crimson"
                 />
               </div>
@@ -147,7 +142,6 @@ function Register() {
               </select>
             </div>
 
-
             <div>
               <label
                 htmlFor="grade"
@@ -168,9 +162,10 @@ function Register() {
 
             <button
               type="submit"
-              className="w-full rounded-lg bg-crimson px-6 py-3 font-display text-sm font-semibold uppercase tracking-wide text-crimson-foreground transition-transform hover:-translate-y-0.5"
+              disabled={busy}
+              className="w-full rounded-lg bg-crimson px-6 py-3 font-display text-sm font-semibold uppercase tracking-wide text-crimson-foreground transition-transform hover:-translate-y-0.5 disabled:opacity-60"
             >
-              Notify me by email
+              {busy ? "Sending…" : "Notify me by email"}
             </button>
             <p className="text-center text-xs text-muted-foreground">
               Prefer to write to us directly?{" "}
