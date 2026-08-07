@@ -74,6 +74,39 @@ export type Database = {
         }
         Relationships: []
       }
+      interest_registrations: {
+        Row: {
+          country: string | null
+          created_at: string
+          email: string
+          first_name: string
+          grade: string | null
+          id: string
+          last_name: string
+          school: string | null
+        }
+        Insert: {
+          country?: string | null
+          created_at?: string
+          email: string
+          first_name: string
+          grade?: string | null
+          id?: string
+          last_name: string
+          school?: string | null
+        }
+        Update: {
+          country?: string | null
+          created_at?: string
+          email?: string
+          first_name?: string
+          grade?: string | null
+          id?: string
+          last_name?: string
+          school?: string | null
+        }
+        Relationships: []
+      }
       problem_proposals: {
         Row: {
           created_at: string
@@ -128,6 +161,90 @@ export type Database = {
           display_name?: string | null
           id?: string
           updated_at?: string
+        }
+        Relationships: []
+      }
+      public_contributor_applications: {
+        Row: {
+          batch_id: string
+          country: string | null
+          created_at: string
+          email: string
+          essay: string
+          first_name: string
+          id: string
+          last_name: string
+          role_wanted: string
+          status: string
+        }
+        Insert: {
+          batch_id?: string
+          country?: string | null
+          created_at?: string
+          email: string
+          essay: string
+          first_name: string
+          id?: string
+          last_name: string
+          role_wanted?: string
+          status?: string
+        }
+        Update: {
+          batch_id?: string
+          country?: string | null
+          created_at?: string
+          email?: string
+          essay?: string
+          first_name?: string
+          id?: string
+          last_name?: string
+          role_wanted?: string
+          status?: string
+        }
+        Relationships: []
+      }
+      public_problem_proposals: {
+        Row: {
+          batch_id: string
+          country: string | null
+          created_at: string
+          difficulty: string
+          email: string
+          first_name: string
+          id: string
+          last_name: string
+          solution_sketch: string | null
+          statement: string
+          status: string
+          title: string
+        }
+        Insert: {
+          batch_id?: string
+          country?: string | null
+          created_at?: string
+          difficulty?: string
+          email: string
+          first_name: string
+          id?: string
+          last_name: string
+          solution_sketch?: string | null
+          statement: string
+          status?: string
+          title: string
+        }
+        Update: {
+          batch_id?: string
+          country?: string | null
+          created_at?: string
+          difficulty?: string
+          email?: string
+          first_name?: string
+          id?: string
+          last_name?: string
+          solution_sketch?: string | null
+          statement?: string
+          status?: string
+          title?: string
         }
         Relationships: []
       }
