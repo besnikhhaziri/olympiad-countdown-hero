@@ -105,18 +105,17 @@ function MapPage() {
       <section className="mx-auto max-w-5xl px-5 py-14">
         <WorldParticipation data={mapData} />
 
-        <div className="mt-10 grid gap-4 sm:grid-cols-3">
-          {[
-            [String(totals.size), "Countries on the map"],
-          ].map(([k, v]) => (
-            <div key={v} className="rounded-xl border border-border bg-card p-5">
-              <div className="font-display text-3xl font-bold text-crimson">{k}</div>
-              <div className="mt-1 text-xs uppercase tracking-[0.16em] text-muted-foreground">
-                {v}
-              </div>
+        <div className="mt-10 max-w-xs">
+          <div className="rounded-xl border border-border bg-card p-5">
+            <div className="font-display text-3xl font-bold text-crimson">
+              {totals.size}
             </div>
-          ))}
+            <div className="mt-1 text-xs uppercase tracking-[0.16em] text-muted-foreground">
+              Countries on the map
+            </div>
+          </div>
         </div>
+
 
         <h2 className="mt-12 font-display text-2xl font-semibold text-chalk">
           Country breakdown
