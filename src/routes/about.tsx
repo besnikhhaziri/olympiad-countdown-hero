@@ -27,7 +27,7 @@ const TIMELINE = [
   {
     year: "November 2024",
     title: "The first edition",
-    body: "We ran the very first Geometry Mains Olympiad — a single four-hour paper of four synthetic geometry problems, written and graded by hand.",
+    body: "We ran the very first Geometry Mains Olympiad — a single paper of synthetic geometry problems, written and graded by hand.",
   },
   {
     year: "2025",
@@ -37,7 +37,7 @@ const TIMELINE = [
   {
     year: "November 2026",
     title: "The second edition",
-    body: "The olympiad returns on November 14. Same format, more seats, and published solutions for every problem afterwards.",
+    body: "The olympiad returns on November 14. Same spirit, more seats, and published solutions for every problem afterwards.",
   },
 ];
 
@@ -52,7 +52,7 @@ function About() {
           <p className="mt-5 text-lg text-muted-foreground">
             The Geometry Mains Olympiad is a contest for students who like one
             subject more than the rest of the syllabus: geometry. No mixed bag of
-            topics, no multiple choice — just four problems that reward a good
+            topics, no multiple choice — just problems that reward a good
             diagram and a better idea.
           </p>
         </div>
@@ -84,8 +84,6 @@ function About() {
         </h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {[
-            ["Four problems", "Ordered roughly by difficulty, 7 points each."],
-            ["Four hours", "One continuous sitting, no breaks in between."],
             ["Full written proofs", "Answers alone score nothing — argue it."],
             ["No calculators", "Straightedge and compass thinking only."],
           ].map(([t, d]) => (

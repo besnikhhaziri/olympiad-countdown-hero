@@ -81,7 +81,6 @@ function Results() {
             {[
               ["3", "Perfect scores"],
               ["1", "Gold"],
-              ["4h", "Time limit"],
             ].map(([k, v]) => (
 
               <div key={v} className="rounded-xl border border-border bg-card p-5">
