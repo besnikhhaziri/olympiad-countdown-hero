@@ -48,30 +48,23 @@ function toCode(name: string): string | null {
 }
 
 function MapPage() {
-  const { data: members = [] } = useQuery({
-    queryKey: ["profile-countries"],
+  const { data: countries = [] } = useQuery({
+    queryKey: ["participating-countries"],
     queryFn: async () => {
-      const { data } = await supabase.from("profiles").select("country");
+      const { data } = await (
+        supabase.rpc as unknown as (
+          fn: string,
+        ) => Promise<{ data: { country: string }[] | null }>
+      )("participating_countries");
       return (data ?? [])
         .map((r) => r.country)
         .filter((c): c is string => Boolean(c));
     },
   });
 
-  const { data: recorded = [] } = useQuery({
-    queryKey: ["map-participation"],
-    queryFn: async () => {
-      const { data } = await supabase
-        .from("country_participation")
-        .select("country, participants");
-      return data ?? [];
-    },
-  });
-
   const totals = new Map<string, number>();
-  for (const row of recorded)
-    totals.set(row.country, (totals.get(row.country) ?? 0) + row.participants);
-  for (const name of members) totals.set(name, (totals.get(name) ?? 0) + 1);
+  for (const name of countries) totals.set(name, 1);
+
 
 
   const mapData = [...totals.entries()]
