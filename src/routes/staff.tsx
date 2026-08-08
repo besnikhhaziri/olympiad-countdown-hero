@@ -24,14 +24,9 @@ export const Route = createFileRoute("/staff")({
 
 const TEAM = [
   {
-    role: "Founder & director",
-    name: "To be listed",
-    bio: "Runs the olympiad, writes the announcements and keeps the paper on schedule.",
-  },
-  {
     role: "Problem selection committee",
     name: "Open — 3 seats",
-    bio: "Reads every proposal, tests difficulty and builds the four-problem paper.",
+    bio: "Reads every proposal, tests difficulty and helps build the final paper.",
   },
   {
     role: "Head of grading",

@@ -38,7 +38,7 @@ const ROLES = [
   {
     id: "solution-writer",
     title: "Solution writer",
-    body: "Write up clean, readable official solutions for one of the four problems.",
+    body: "Write up clean, readable official solutions for one of the problems.",
   },
   {
     id: "problem-committee",

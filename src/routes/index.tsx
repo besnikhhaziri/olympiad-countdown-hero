@@ -26,11 +26,11 @@ export const Route = createFileRoute("/")({
 });
 
 const FACTS = [
-  { k: "4", v: "Problems" },
-  { k: "4h", v: "Time limit" },
   { k: "Free", v: "Entry" },
   { k: "2nd", v: "Edition" },
 ];
+
+
 
 
 
@@ -51,7 +51,7 @@ function Home() {
             </h1>
             <p className="mt-5 max-w-md text-lg text-muted-foreground">
               Two years after our first paper, the olympiad is back. One sitting,
-              four problems, and nothing but circles, triangles and the ideas that
+              a paper of pure geometry, and nothing but circles, triangles and the ideas that
               tie them together.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">

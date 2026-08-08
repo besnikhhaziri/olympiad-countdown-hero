@@ -102,29 +102,14 @@ function AuthPage() {
 
         <div className="relative">
           <h2 className="max-w-md font-display text-4xl font-bold leading-tight text-[oklch(0.98_0.008_150)]">
-            Four problems.
+            Join the olympiad community.
             <br />
-            Four hours.
-            <br />
-            <span className="text-crimson">One clean diagram.</span>
+            <span className="text-crimson">Propose. Contribute. Compete.</span>
           </h2>
           <p className="mt-6 max-w-sm text-sm leading-relaxed text-[oklch(0.82_0.02_155)]">
             An account lets you propose problems, apply to grade papers for a
             certificate, and put your country on our participation map.
           </p>
-        </div>
-
-        <div className="relative flex gap-8 text-[oklch(0.82_0.02_155)]">
-          {[
-            ["14", "Participants"],
-            ["12", "Countries"],
-            ["2nd", "Edition"],
-          ].map(([k, v]) => (
-            <div key={v}>
-              <div className="font-display text-2xl font-bold text-crimson">{k}</div>
-              <div className="text-[11px] uppercase tracking-[0.18em]">{v}</div>
-            </div>
-          ))}
         </div>
       </aside>
 

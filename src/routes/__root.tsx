@@ -84,13 +84,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         name: "description",
         content:
-          "A four-hour, four-problem synthetic geometry olympiad. Second edition November 2026.",
+          "A synthetic geometry olympiad. Second edition November 2026.",
       },
       { property: "og:title", content: "Geometry Mains Olympiad" },
       {
         property: "og:description",
         content:
-          "A four-hour, four-problem synthetic geometry olympiad. Second edition November 2026.",
+          "A synthetic geometry olympiad. Second edition November 2026.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
