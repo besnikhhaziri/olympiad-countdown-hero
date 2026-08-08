@@ -281,6 +281,12 @@ export type Database = {
         }
         Returns: boolean
       }
+      participating_countries: {
+        Args: never
+        Returns: {
+          country: string
+        }[]
+      }
     }
     Enums: {
       app_role: "admin" | "staff" | "user"
