@@ -10,13 +10,13 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "The Geometry Mains Olympiad returns this November. Four problems, four hours, pure synthetic geometry. Countdown, past papers and registration.",
+          "The Geometry Mains Olympiad returns this November. Pure synthetic geometry, open to everyone. Countdown, past papers and registration.",
       },
       { property: "og:title", content: "Geometry Mains Olympiad 2026" },
       {
         property: "og:description",
         content:
-          "The Geometry Mains Olympiad returns this November — four problems, four hours, pure geometry.",
+          "The Geometry Mains Olympiad returns this November — pure synthetic geometry, open to everyone.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
