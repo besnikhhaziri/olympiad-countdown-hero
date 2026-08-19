@@ -5,7 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { lovable } from "@/integrations/lovable/index";
 import { useAuth } from "@/lib/auth";
 import { COUNTRIES } from "@/lib/countries";
-import logo from "@/assets/gmo-logo.jpg.asset.json";
+import logo from "@/assets/gmo-logo.jpg";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
@@ -94,7 +94,7 @@ function AuthPage() {
           style={{ background: "color-mix(in oklab, var(--crimson) 45%, transparent)" }}
         />
         <Link to="/" className="relative flex items-center gap-3">
-          <img src={logo.url} alt="" className="h-11 w-11 rounded-full" />
+          <img src={logo} alt="" className="h-11 w-11 rounded-full" />
           <span className="font-display text-sm font-bold uppercase tracking-[0.16em] text-[oklch(0.98_0.008_150)]">
             Geometry Mains Olympiad
           </span>
