@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { useState, type ReactNode } from "react";
-import logo from "@/assets/gmo-logo.jpg.asset.json";
+import logo from "@/assets/gmo-logo.jpg";
 import { Marquee } from "./Marquee";
 import { ThemeToggle } from "@/lib/theme";
 
@@ -31,7 +31,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         <div className="mx-auto flex max-w-7xl items-center gap-4 px-5 py-3">
           <Link to="/" className="flex shrink-0 items-center gap-3">
             <img
-              src={logo.url}
+              src={logo}
               alt="Geometry Mains Olympiad logo"
               className="h-10 w-10 rounded-full ring-1 ring-crimson"
             />
@@ -96,7 +96,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <footer className="border-t border-border bg-secondary/40">
         <div className="mx-auto grid max-w-6xl gap-8 px-5 py-12 sm:grid-cols-3">
           <div className="flex items-start gap-3">
-            <img src={logo.url} alt="" className="h-9 w-9 rounded-full" />
+            <img src={logo} alt="" className="h-9 w-9 rounded-full" />
             <p className="text-sm text-muted-foreground">
               Geometry Mains Olympiad — since 2024
             </p>

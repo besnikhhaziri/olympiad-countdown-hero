@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Countdown } from "@/components/Countdown";
-import logo from "@/assets/gmo-logo.jpg.asset.json";
+import logo from "@/assets/gmo-logo.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -79,7 +79,7 @@ function Home() {
 
           <div className="flex justify-center">
             <img
-              src={logo.url}
+              src={logo}
               alt="Geometry Mains Olympiad emblem"
               className="w-64 animate-float rounded-full sm:w-80"
               style={{ boxShadow: "var(--shadow-glow)" }}
