@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as ContributeRouteImport } from './routes/contribute'
 import { Route as MapRouteImport } from './routes/map'
 import { Route as PastPapersRouteImport } from './routes/past-papers'
@@ -41,6 +42,11 @@ const AccountRoute = AccountRouteImport.update({
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
   path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContributeRoute = ContributeRouteImport.update({
@@ -94,6 +100,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
+  '/contact': typeof ContactRoute
   '/contribute': typeof ContributeRoute
   '/map': typeof MapRoute
   '/past-papers': typeof PastPapersRoute
@@ -109,6 +116,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
+  '/contact': typeof ContactRoute
   '/contribute': typeof ContributeRoute
   '/map': typeof MapRoute
   '/past-papers': typeof PastPapersRoute
@@ -125,6 +133,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
+  '/contact': typeof ContactRoute
   '/contribute': typeof ContributeRoute
   '/map': typeof MapRoute
   '/past-papers': typeof PastPapersRoute
@@ -142,6 +151,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/account'
     | '/auth'
+    | '/contact'
     | '/contribute'
     | '/map'
     | '/past-papers'
@@ -157,6 +167,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/account'
     | '/auth'
+    | '/contact'
     | '/contribute'
     | '/map'
     | '/past-papers'
@@ -172,6 +183,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/account'
     | '/auth'
+    | '/contact'
     | '/contribute'
     | '/map'
     | '/past-papers'
@@ -188,6 +200,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AccountRoute: typeof AccountRoute
   AuthRoute: typeof AuthRoute
+  ContactRoute: typeof ContactRoute
   ContributeRoute: typeof ContributeRoute
   MapRoute: typeof MapRoute
   PastPapersRoute: typeof PastPapersRoute
@@ -227,6 +240,13 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contribute': {
@@ -300,6 +320,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AccountRoute: AccountRoute,
   AuthRoute: AuthRoute,
+  ContactRoute: ContactRoute,
   ContributeRoute: ContributeRoute,
   MapRoute: MapRoute,
   PastPapersRoute: PastPapersRoute,

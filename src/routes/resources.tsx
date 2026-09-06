@@ -117,7 +117,7 @@ const GROUPS: {
       },
       {
         name: "Our Discord server",
-        url: "https://discord.gg/geometrymains",
+        url: "https://discord.gg/rGjsxp3jA",
         note: "Study partners, weekly problems and announcements from the organisers.",
       },
     ],

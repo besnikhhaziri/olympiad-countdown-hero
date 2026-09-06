@@ -58,8 +58,36 @@ function About() {
         </div>
       </section>
 
+      <section className="mx-auto max-w-4xl px-5 pt-10">
+        <nav className="flex flex-wrap gap-2">
+          {[
+            ["#introduction", "Introduction"],
+            ["#story", "Our story"],
+            ["#founders", "Founders"],
+            ["#format", "The format"],
+          ].map(([href, label]) => (
+            <a
+              key={href}
+              href={href}
+              className="rounded-full border border-border px-4 py-1.5 text-sm text-muted-foreground hover:text-chalk"
+            >
+              {label}
+            </a>
+          ))}
+        </nav>
+      </section>
+
       <section className="mx-auto max-w-4xl px-5 py-16">
-        <h2 className="font-display text-2xl font-semibold text-chalk">
+        <h2 id="introduction" className="font-display text-2xl font-semibold text-chalk">
+          Introduction
+        </h2>
+        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+          The olympiad is run by a small volunteer team of students and former
+          contestants. Everything — the paper, the grading, the website — is
+          made by people who simply enjoy geometry, and entry is always free.
+        </p>
+
+        <h2 id="story" className="mt-16 font-display text-2xl font-semibold text-chalk">
           Our story
         </h2>
         <ol className="mt-8 space-y-8 border-l border-border pl-6">
@@ -79,7 +107,16 @@ function About() {
           ))}
         </ol>
 
-        <h2 className="mt-16 font-display text-2xl font-semibold text-chalk">
+        <h2 id="founders" className="mt-16 font-display text-2xl font-semibold text-chalk">
+          Founders
+        </h2>
+        <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+          The olympiad was founded in 2024 by a group of secondary-school
+          geometry enthusiasts who wanted a contest devoted to one subject only.
+          The founding team still writes and grades the paper today.
+        </p>
+
+        <h2 id="format" className="mt-16 font-display text-2xl font-semibold text-chalk">
           The format
         </h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2">

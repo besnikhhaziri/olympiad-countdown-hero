@@ -15,12 +15,13 @@ const NAV = [
   { to: "/propose", label: "Propose" },
   { to: "/contribute", label: "Contribute" },
   { to: "/staff", label: "Staff" },
+  { to: "/contact", label: "Contact" },
   { to: "/register", label: "Register" },
 ] as const;
 
 export const NEW_EMAIL = "geometrymainsolympiad@gmail.com";
 export const OLD_EMAIL = "geometrymainsolympiad@outlook.com";
-export const DISCORD_URL = "https://discord.gg/MMV4hHE8z";
+export const DISCORD_URL = "https://discord.gg/rGjsxp3jA";
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
