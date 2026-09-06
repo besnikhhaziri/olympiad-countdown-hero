@@ -54,8 +54,8 @@ const PAPERS: Paper[] = [
 ];
 
 function PastPapers() {
-  const [selected, setSelected] = useState(PAPERS[0].id);
-  const paper = PAPERS.find((p) => p.id === selected) ?? PAPERS[0];
+  const [selected, setSelected] = useState(PAPERS[0]!.id);
+  const paper = PAPERS.find((p) => p.id === selected) ?? PAPERS[0]!;
 
   return (
     <SiteLayout>
