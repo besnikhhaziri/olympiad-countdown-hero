@@ -103,8 +103,12 @@ export function SiteLayout({ children }: { children: ReactNode }) {
             </p>
           </div>
 
-          <nav className="flex flex-col gap-2 text-sm text-muted-foreground">
-            {NAV.map((item) => (
+          <nav className="grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-muted-foreground sm:col-span-1">
+            {NAV.filter((item) =>
+              ["/", "/about", "/results", "/past-papers", "/register", "/contact"].includes(
+                item.to,
+              ),
+            ).map((item) => (
               <Link key={item.to} to={item.to} className="hover:text-chalk">
                 {item.label}
               </Link>
@@ -115,7 +119,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
               rel="noreferrer"
               className="hover:text-chalk"
             >
-              Discord server
+              Discord
             </a>
           </nav>
 
