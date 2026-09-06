@@ -87,7 +87,7 @@ function About() {
           made by people who simply enjoy geometry, and entry is always free.
         </p>
 
-        <h2 id="story" className="mt-16 className="font-display text-2xl font-semibold text-chalk">
+        <h2 id="story" className="mt-16 font-display text-2xl font-semibold text-chalk">
           Our story
         </h2>
         <ol className="mt-8 space-y-8 border-l border-border pl-6">
