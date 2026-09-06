@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
 import { SiteLayout, NEW_EMAIL } from "@/components/SiteLayout";
-import { COUNTRIES } from "@/lib/countries";
+import { CountrySelect } from "@/components/CountrySelect";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/propose")({
@@ -157,19 +157,7 @@ function Propose() {
               </div>
               <div>
                 <L htmlFor="country">Country</L>
-                <select
-                  id="country"
-                  name="country"
-                  defaultValue=""
-                  className={field}
-                >
-                  <option value="">Select your country</option>
-                  {COUNTRIES.map((c) => (
-                    <option key={c.code} value={c.name}>
-                      {c.name}
-                    </option>
-                  ))}
-                </select>
+                <CountrySelect />
               </div>
             </div>
 

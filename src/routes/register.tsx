@@ -3,7 +3,7 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { SiteLayout, NEW_EMAIL, OLD_EMAIL } from "@/components/SiteLayout";
 import { Countdown } from "@/components/Countdown";
-import { COUNTRIES } from "@/lib/countries";
+import { CountrySelect } from "@/components/CountrySelect";
 import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/register")({
@@ -124,22 +124,7 @@ function Register() {
               >
                 Country
               </label>
-              <select
-                id="country"
-                name="country"
-                required
-                defaultValue=""
-                className="mt-2 w-full rounded-lg border border-input bg-background px-4 py-3 text-sm text-chalk outline-none focus:border-crimson"
-              >
-                <option value="" disabled>
-                  Select your country
-                </option>
-                {COUNTRIES.map((c) => (
-                  <option key={c.code} value={c.name}>
-                    {c.name}
-                  </option>
-                ))}
-              </select>
+              <CountrySelect required />
             </div>
 
             <div>
