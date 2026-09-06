@@ -15,6 +15,7 @@ const NAV = [
   { to: "/propose", label: "Propose" },
   { to: "/contribute", label: "Contribute" },
   { to: "/staff", label: "Staff" },
+  { to: "/contact", label: "Contact" },
   { to: "/register", label: "Register" },
 ] as const;
 
