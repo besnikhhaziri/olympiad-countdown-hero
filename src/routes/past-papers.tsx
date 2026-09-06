@@ -20,7 +20,7 @@ export const Route = createFileRoute("/past-papers")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
-  component: PastPapers;
+  component: PastPapers,
 });
 
 type Paper = {
