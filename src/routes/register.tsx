@@ -146,6 +146,30 @@ function Register() {
               </select>
             </div>
 
+            <div>
+              <label
+                htmlFor="category"
+                className="block text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground"
+              >
+                Which level do you want to compete in?
+              </label>
+              <select
+                id="category"
+                name="category"
+                required
+                defaultValue="Medium"
+                className="mt-2 w-full rounded-lg border border-input bg-background px-4 py-3 text-sm text-chalk outline-none focus:border-crimson"
+              >
+                {["Easy", "Medium", "Hard"].map((c) => (
+                  <option key={c}>{c}</option>
+                ))}
+              </select>
+              <p className="mt-2 text-xs text-muted-foreground">
+                Easy, Medium and Hard are three separate categories — pick the one that
+                fits you best.
+              </p>
+            </div>
+
             <button
               type="submit"
               disabled={busy}
