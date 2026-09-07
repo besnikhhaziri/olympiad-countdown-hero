@@ -120,7 +120,10 @@ function Results() {
       </section>
 
       <section className="mx-auto max-w-5xl px-5 pb-20">
-        <h2 className="font-display text-2xl font-semibold text-chalk">
+        <h2
+          id="scoreboard"
+          className="scroll-mt-24 font-display text-2xl font-semibold text-chalk"
+        >
           Full scoreboard
         </h2>
         <div className="mt-6 overflow-x-auto rounded-2xl border border-border bg-card">
