@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
 
-export const Route = createFileRoute("/results")({
+export const Route = createFileRoute("/results/")({
   head: () => ({
     meta: [
       { title: "Results 2024 — Geometry Mains Olympiad" },

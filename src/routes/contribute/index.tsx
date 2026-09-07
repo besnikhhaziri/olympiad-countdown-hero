@@ -5,7 +5,7 @@ import { SiteLayout, NEW_EMAIL, DISCORD_URL } from "@/components/SiteLayout";
 import { CountrySelect } from "@/components/CountrySelect";
 import { supabase } from "@/integrations/supabase/client";
 
-export const Route = createFileRoute("/contribute")({
+export const Route = createFileRoute("/contribute/")({
   head: () => ({
     meta: [
       { title: "Contribute & earn a certificate — Geometry Mains Olympiad" },

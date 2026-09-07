@@ -10,28 +10,23 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ContactRouteImport } from './routes/contact'
-import { Route as ContributeRouteImport } from './routes/contribute'
 import { Route as MapRouteImport } from './routes/map'
-import { Route as PastPapersRouteImport } from './routes/past-papers'
 import { Route as ProposeRouteImport } from './routes/propose'
 import { Route as RegisterRouteImport } from './routes/register'
 import { Route as ResourcesRouteImport } from './routes/resources'
-import { Route as ResultsRouteImport } from './routes/results'
 import { Route as StaffRouteImport } from './routes/staff'
 import { Route as StaffAdminRouteImport } from './routes/staff-admin'
+import { Route as AboutIndexRouteImport } from './routes/about/index'
+import { Route as ContributeIndexRouteImport } from './routes/contribute/index'
+import { Route as PastPapersIndexRouteImport } from './routes/past-papers/index'
+import { Route as ResultsIndexRouteImport } from './routes/results/index'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AboutRoute = AboutRouteImport.update({
-  id: '/about',
-  path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AccountRoute = AccountRouteImport.update({
@@ -49,19 +44,9 @@ const ContactRoute = ContactRouteImport.update({
   path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ContributeRoute = ContributeRouteImport.update({
-  id: '/contribute',
-  path: '/contribute',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const MapRoute = MapRouteImport.update({
   id: '/map',
   path: '/map',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const PastPapersRoute = PastPapersRouteImport.update({
-  id: '/past-papers',
-  path: '/past-papers',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ProposeRoute = ProposeRouteImport.update({
@@ -79,11 +64,6 @@ const ResourcesRoute = ResourcesRouteImport.update({
   path: '/resources',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ResultsRoute = ResultsRouteImport.update({
-  id: '/results',
-  path: '/results',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const StaffRoute = StaffRouteImport.update({
   id: '/staff',
   path: '/staff',
@@ -94,122 +74,142 @@ const StaffAdminRoute = StaffAdminRouteImport.update({
   path: '/staff-admin',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutIndexRoute = AboutIndexRouteImport.update({
+  id: '/about/',
+  path: '/about/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContributeIndexRoute = ContributeIndexRouteImport.update({
+  id: '/contribute/',
+  path: '/contribute/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PastPapersIndexRoute = PastPapersIndexRouteImport.update({
+  id: '/past-papers/',
+  path: '/past-papers/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResultsIndexRoute = ResultsIndexRouteImport.update({
+  id: '/results/',
+  path: '/results/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
-  '/contribute': typeof ContributeRoute
   '/map': typeof MapRoute
-  '/past-papers': typeof PastPapersRoute
   '/propose': typeof ProposeRoute
   '/register': typeof RegisterRoute
   '/resources': typeof ResourcesRoute
-  '/results': typeof ResultsRoute
   '/staff': typeof StaffRoute
   '/staff-admin': typeof StaffAdminRoute
+  '/about/': typeof AboutIndexRoute
+  '/contribute/': typeof ContributeIndexRoute
+  '/past-papers/': typeof PastPapersIndexRoute
+  '/results/': typeof ResultsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
-  '/contribute': typeof ContributeRoute
   '/map': typeof MapRoute
-  '/past-papers': typeof PastPapersRoute
   '/propose': typeof ProposeRoute
   '/register': typeof RegisterRoute
   '/resources': typeof ResourcesRoute
-  '/results': typeof ResultsRoute
   '/staff': typeof StaffRoute
   '/staff-admin': typeof StaffAdminRoute
+  '/about': typeof AboutIndexRoute
+  '/contribute': typeof ContributeIndexRoute
+  '/past-papers': typeof PastPapersIndexRoute
+  '/results': typeof ResultsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/about': typeof AboutRoute
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
-  '/contribute': typeof ContributeRoute
   '/map': typeof MapRoute
-  '/past-papers': typeof PastPapersRoute
   '/propose': typeof ProposeRoute
   '/register': typeof RegisterRoute
   '/resources': typeof ResourcesRoute
-  '/results': typeof ResultsRoute
   '/staff': typeof StaffRoute
   '/staff-admin': typeof StaffAdminRoute
+  '/about/': typeof AboutIndexRoute
+  '/contribute/': typeof ContributeIndexRoute
+  '/past-papers/': typeof PastPapersIndexRoute
+  '/results/': typeof ResultsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
-    | '/about'
     | '/account'
     | '/auth'
     | '/contact'
-    | '/contribute'
     | '/map'
-    | '/past-papers'
     | '/propose'
     | '/register'
     | '/resources'
-    | '/results'
     | '/staff'
     | '/staff-admin'
+    | '/about/'
+    | '/contribute/'
+    | '/past-papers/'
+    | '/results/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
-    | '/about'
     | '/account'
     | '/auth'
     | '/contact'
-    | '/contribute'
     | '/map'
-    | '/past-papers'
     | '/propose'
     | '/register'
     | '/resources'
-    | '/results'
     | '/staff'
     | '/staff-admin'
+    | '/about'
+    | '/contribute'
+    | '/past-papers'
+    | '/results'
   id:
     | '__root__'
     | '/'
-    | '/about'
     | '/account'
     | '/auth'
     | '/contact'
-    | '/contribute'
     | '/map'
-    | '/past-papers'
     | '/propose'
     | '/register'
     | '/resources'
-    | '/results'
     | '/staff'
     | '/staff-admin'
+    | '/about/'
+    | '/contribute/'
+    | '/past-papers/'
+    | '/results/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AboutRoute: typeof AboutRoute
   AccountRoute: typeof AccountRoute
   AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
-  ContributeRoute: typeof ContributeRoute
   MapRoute: typeof MapRoute
-  PastPapersRoute: typeof PastPapersRoute
   ProposeRoute: typeof ProposeRoute
   RegisterRoute: typeof RegisterRoute
   ResourcesRoute: typeof ResourcesRoute
-  ResultsRoute: typeof ResultsRoute
   StaffRoute: typeof StaffRoute
   StaffAdminRoute: typeof StaffAdminRoute
+  AboutIndexRoute: typeof AboutIndexRoute
+  ContributeIndexRoute: typeof ContributeIndexRoute
+  PastPapersIndexRoute: typeof PastPapersIndexRoute
+  ResultsIndexRoute: typeof ResultsIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -219,13 +219,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/about': {
-      id: '/about'
-      path: '/about'
-      fullPath: '/about'
-      preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/account': {
@@ -249,25 +242,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/contribute': {
-      id: '/contribute'
-      path: '/contribute'
-      fullPath: '/contribute'
-      preLoaderRoute: typeof ContributeRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/map': {
       id: '/map'
       path: '/map'
       fullPath: '/map'
       preLoaderRoute: typeof MapRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/past-papers': {
-      id: '/past-papers'
-      path: '/past-papers'
-      fullPath: '/past-papers'
-      preLoaderRoute: typeof PastPapersRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/propose': {
@@ -291,13 +270,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResourcesRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/results': {
-      id: '/results'
-      path: '/results'
-      fullPath: '/results'
-      preLoaderRoute: typeof ResultsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/staff': {
       id: '/staff'
       path: '/staff'
@@ -312,24 +284,52 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StaffAdminRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about/': {
+      id: '/about/'
+      path: '/about'
+      fullPath: '/about/'
+      preLoaderRoute: typeof AboutIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contribute/': {
+      id: '/contribute/'
+      path: '/contribute'
+      fullPath: '/contribute/'
+      preLoaderRoute: typeof ContributeIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/past-papers/': {
+      id: '/past-papers/'
+      path: '/past-papers'
+      fullPath: '/past-papers/'
+      preLoaderRoute: typeof PastPapersIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/results/': {
+      id: '/results/'
+      path: '/results'
+      fullPath: '/results/'
+      preLoaderRoute: typeof ResultsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AboutRoute: AboutRoute,
   AccountRoute: AccountRoute,
   AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
-  ContributeRoute: ContributeRoute,
   MapRoute: MapRoute,
-  PastPapersRoute: PastPapersRoute,
   ProposeRoute: ProposeRoute,
   RegisterRoute: RegisterRoute,
   ResourcesRoute: ResourcesRoute,
-  ResultsRoute: ResultsRoute,
   StaffRoute: StaffRoute,
   StaffAdminRoute: StaffAdminRoute,
+  AboutIndexRoute: AboutIndexRoute,
+  ContributeIndexRoute: ContributeIndexRoute,
+  PastPapersIndexRoute: PastPapersIndexRoute,
+  ResultsIndexRoute: ResultsIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
