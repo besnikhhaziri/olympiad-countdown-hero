@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { SiteLayout } from "@/components/SiteLayout";
 
-export const Route = createFileRoute("/past-papers")({
+export const Route = createFileRoute("/past-papers/")({
   head: () => ({
     meta: [
       { title: "Past Papers — Geometry Mains Olympiad" },
