@@ -31,9 +31,19 @@ export const Route = createFileRoute("/contribute")({
 
 const ROLES = [
   {
+    id: "volunteer",
+    title: "Volunteer",
+    body: "General help wherever it's needed: outreach, translations, proofreading and contest-day support.",
+  },
+  {
     id: "grader",
     title: "Grader",
     body: "Mark scripts against our marking scheme during the week after the contest. Roughly 5-8 hours of work.",
+  },
+  {
+    id: "marking-scheme",
+    title: "Marking scheme",
+    body: "Help write the marking scheme: point splits, partial credit rules and worked-out grading notes.",
   },
   {
     id: "solution-writer",
