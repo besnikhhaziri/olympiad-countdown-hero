@@ -5,19 +5,53 @@ import { Marquee } from "./Marquee";
 import { ThemeToggle } from "@/lib/theme";
 
 
-const NAV = [
+type NavChild = { to: string; hash?: string; label: string };
+type NavItem = { to: string; label: string; children?: NavChild[] };
+
+const NAV: NavItem[] = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/results", label: "Results" },
+  {
+    to: "/about",
+    label: "About",
+    children: [
+      { to: "/about", hash: "introduction", label: "Introduction" },
+      { to: "/about", hash: "story", label: "Our story" },
+      { to: "/about", hash: "founders", label: "Founders" },
+      { to: "/about", hash: "format", label: "The format" },
+    ],
+  },
+  {
+    to: "/results",
+    label: "Results",
+    children: [
+      { to: "/results", label: "1st competition — 2024" },
+      { to: "/results", hash: "scoreboard", label: "Full scoreboard" },
+    ],
+  },
   { to: "/map", label: "Map" },
-  { to: "/past-papers", label: "Past Papers" },
+  {
+    to: "/past-papers",
+    label: "Past Papers",
+    children: [
+      { to: "/past-papers", label: "1st paper — 2024" },
+      { to: "/past-papers", label: "2nd paper — 2026" },
+    ],
+  },
   { to: "/resources", label: "Resources" },
   { to: "/propose", label: "Propose" },
-  { to: "/contribute", label: "Contribute" },
+  {
+    to: "/contribute",
+    label: "Contribute",
+    children: [
+      { to: "/contribute", hash: "roles", label: "Volunteer roles" },
+      { to: "/contribute", hash: "marking", label: "Marking scheme" },
+      { to: "/contribute", hash: "apply", label: "Apply" },
+    ],
+  },
   { to: "/staff", label: "Staff" },
   { to: "/contact", label: "Contact" },
   { to: "/register", label: "Register" },
-] as const;
+];
 
 export const NEW_EMAIL = "geometrymainsolympiad@gmail.com";
 export const OLD_EMAIL = "geometrymainsolympiad@outlook.com";
