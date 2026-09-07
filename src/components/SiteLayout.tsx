@@ -130,14 +130,30 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         {open && (
           <nav className="flex flex-col gap-1 border-t border-border px-5 py-3 xl:hidden">
             {NAV.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                onClick={() => setOpen(false)}
-                className="py-2 text-sm text-muted-foreground"
-              >
-                {item.label}
-              </Link>
+              <div key={item.label}>
+                <Link
+                  to={item.to}
+                  onClick={() => setOpen(false)}
+                  className="block py-2 text-sm text-muted-foreground"
+                >
+                  {item.label}
+                </Link>
+                {item.children && (
+                  <div className="ml-4 border-l border-border pl-3">
+                    {item.children.map((c) => (
+                      <Link
+                        key={c.label}
+                        to={c.to}
+                        hash={c.hash}
+                        onClick={() => setOpen(false)}
+                        className="block py-1.5 text-[13px] text-muted-foreground"
+                      >
+                        {c.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
         )}
