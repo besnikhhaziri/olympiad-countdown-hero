@@ -47,6 +47,7 @@ function Register() {
       country: String(f.get("country") ?? "").slice(0, 100),
       school: String(f.get("school") ?? "").trim().slice(0, 200),
       grade: String(f.get("grade") ?? "").slice(0, 40),
+      category: String(f.get("category") ?? "").slice(0, 20),
     });
     setBusy(false);
     if (error) {
