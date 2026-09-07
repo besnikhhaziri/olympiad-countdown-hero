@@ -99,7 +99,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                           <Link
                             key={c.label}
                             to={c.to}
-                            hash={c.hash}
+                            {...(c.hash ? { hash: c.hash } : {})}
                             className="block px-4 py-2.5 text-[13px] text-muted-foreground transition-colors hover:bg-secondary hover:text-chalk"
                           >
                             {c.label}
@@ -144,7 +144,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
                       <Link
                         key={c.label}
                         to={c.to}
-                        hash={c.hash}
+                        {...(c.hash ? { hash: c.hash } : {})}
                         onClick={() => setOpen(false)}
                         className="block py-1.5 text-[13px] text-muted-foreground"
                       >
