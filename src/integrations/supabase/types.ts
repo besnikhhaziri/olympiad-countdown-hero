@@ -76,6 +76,7 @@ export type Database = {
       }
       interest_registrations: {
         Row: {
+          category: string | null
           country: string | null
           created_at: string
           email: string
@@ -86,6 +87,7 @@ export type Database = {
           school: string | null
         }
         Insert: {
+          category?: string | null
           country?: string | null
           created_at?: string
           email: string
@@ -96,6 +98,7 @@ export type Database = {
           school?: string | null
         }
         Update: {
+          category?: string | null
           country?: string | null
           created_at?: string
           email?: string
