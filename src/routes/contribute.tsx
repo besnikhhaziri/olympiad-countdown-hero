@@ -148,7 +148,7 @@ function Contribute() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-4xl px-5 py-14">
+      <section id="roles" className="mx-auto max-w-4xl scroll-mt-24 px-5 py-14">
         <h2 className="font-display text-2xl font-semibold text-chalk">Open roles</h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {ROLES.map((r) => (
