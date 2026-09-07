@@ -5,19 +5,53 @@ import { Marquee } from "./Marquee";
 import { ThemeToggle } from "@/lib/theme";
 
 
-const NAV = [
+type NavChild = { to: string; hash?: string; label: string };
+type NavItem = { to: string; label: string; children?: NavChild[] };
+
+const NAV: NavItem[] = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
-  { to: "/results", label: "Results" },
+  {
+    to: "/about",
+    label: "About",
+    children: [
+      { to: "/about", hash: "introduction", label: "Introduction" },
+      { to: "/about", hash: "story", label: "Our story" },
+      { to: "/about", hash: "founders", label: "Founders" },
+      { to: "/about", hash: "format", label: "The format" },
+    ],
+  },
+  {
+    to: "/results",
+    label: "Results",
+    children: [
+      { to: "/results", label: "1st competition — 2024" },
+      { to: "/results", hash: "scoreboard", label: "Full scoreboard" },
+    ],
+  },
   { to: "/map", label: "Map" },
-  { to: "/past-papers", label: "Past Papers" },
+  {
+    to: "/past-papers",
+    label: "Past Papers",
+    children: [
+      { to: "/past-papers", label: "1st paper — 2024" },
+      { to: "/past-papers", label: "2nd paper — 2026" },
+    ],
+  },
   { to: "/resources", label: "Resources" },
   { to: "/propose", label: "Propose" },
-  { to: "/contribute", label: "Contribute" },
+  {
+    to: "/contribute",
+    label: "Contribute",
+    children: [
+      { to: "/contribute", hash: "roles", label: "Volunteer roles" },
+      { to: "/contribute", hash: "marking", label: "Marking scheme" },
+      { to: "/contribute", hash: "apply", label: "Apply" },
+    ],
+  },
   { to: "/staff", label: "Staff" },
   { to: "/contact", label: "Contact" },
   { to: "/register", label: "Register" },
-] as const;
+];
 
 export const NEW_EMAIL = "geometrymainsolympiad@gmail.com";
 export const OLD_EMAIL = "geometrymainsolympiad@outlook.com";
@@ -46,16 +80,35 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           <div className="ml-auto hidden items-center gap-3 xl:flex">
             <nav className="flex flex-wrap items-center justify-end gap-0.5 rounded-full bg-secondary/50 p-1">
               {NAV.map((item) => (
-                <Link
-                  key={item.to}
-                  to={item.to}
-                  activeProps={{
-                    className: "bg-background text-chalk shadow-sm",
-                  }}
-                  className="whitespace-nowrap rounded-full px-3 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:text-chalk"
-                >
-                  {item.label}
-                </Link>
+                <div key={item.label} className="group relative">
+                  <Link
+                    to={item.to}
+                    activeProps={{
+                      className: "bg-background text-chalk shadow-sm",
+                    }}
+                    className="flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-1.5 text-[13px] font-medium text-muted-foreground transition-colors hover:text-chalk"
+                  >
+                    {item.label}
+                    {item.children && <span className="text-[9px] leading-none">▼</span>}
+                  </Link>
+
+                  {item.children && (
+                    <div className="invisible absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 pt-2 opacity-0 transition-opacity group-hover:visible group-hover:opacity-100">
+                      <div className="overflow-hidden rounded-xl border border-border bg-card shadow-lg">
+                        {item.children.map((c) => (
+                          <Link
+                            key={c.label}
+                            to={c.to}
+                            {...(c.hash ? { hash: c.hash } : {})}
+                            className="block px-4 py-2.5 text-[13px] text-muted-foreground transition-colors hover:bg-secondary hover:text-chalk"
+                          >
+                            {c.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
               ))}
             </nav>
             <ThemeToggle />
@@ -77,14 +130,30 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         {open && (
           <nav className="flex flex-col gap-1 border-t border-border px-5 py-3 xl:hidden">
             {NAV.map((item) => (
-              <Link
-                key={item.to}
-                to={item.to}
-                onClick={() => setOpen(false)}
-                className="py-2 text-sm text-muted-foreground"
-              >
-                {item.label}
-              </Link>
+              <div key={item.label}>
+                <Link
+                  to={item.to}
+                  onClick={() => setOpen(false)}
+                  className="block py-2 text-sm text-muted-foreground"
+                >
+                  {item.label}
+                </Link>
+                {item.children && (
+                  <div className="ml-4 border-l border-border pl-3">
+                    {item.children.map((c) => (
+                      <Link
+                        key={c.label}
+                        to={c.to}
+                        {...(c.hash ? { hash: c.hash } : {})}
+                        onClick={() => setOpen(false)}
+                        className="block py-1.5 text-[13px] text-muted-foreground"
+                      >
+                        {c.label}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
         )}

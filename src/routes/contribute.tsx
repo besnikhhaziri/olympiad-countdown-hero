@@ -31,9 +31,19 @@ export const Route = createFileRoute("/contribute")({
 
 const ROLES = [
   {
+    id: "volunteer",
+    title: "Volunteer",
+    body: "General help wherever it's needed: outreach, translations, proofreading and contest-day support.",
+  },
+  {
     id: "grader",
     title: "Grader",
     body: "Mark scripts against our marking scheme during the week after the contest. Roughly 5-8 hours of work.",
+  },
+  {
+    id: "marking-scheme",
+    title: "Marking scheme",
+    body: "Help write the marking scheme: point splits, partial credit rules and worked-out grading notes.",
   },
   {
     id: "solution-writer",
@@ -138,7 +148,7 @@ function Contribute() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-4xl px-5 py-14">
+      <section id="roles" className="mx-auto max-w-4xl scroll-mt-24 px-5 py-14">
         <h2 className="font-display text-2xl font-semibold text-chalk">Open roles</h2>
         <div className="mt-6 grid gap-4 sm:grid-cols-2">
           {ROLES.map((r) => (
@@ -150,7 +160,19 @@ function Contribute() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-2xl px-5 pb-20">
+      <section id="marking" className="mx-auto max-w-4xl scroll-mt-24 px-5 pb-4">
+        <div className="rounded-2xl border border-border bg-card p-6">
+          <h2 className="font-display text-2xl font-semibold text-chalk">Marking scheme</h2>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            Every problem is graded out of 10 against a written marking scheme agreed
+            before grading starts, so partial credit is applied the same way for everyone.
+            The scheme for each edition is published together with the official solutions.
+            If you'd like to help write it, apply below for the "Marking scheme" role.
+          </p>
+        </div>
+      </section>
+
+      <section id="apply" className="mx-auto max-w-2xl scroll-mt-24 px-5 py-16 pb-20">
         <h2 className="font-display text-2xl font-semibold text-chalk">Apply</h2>
         <p className="mt-2 text-sm text-muted-foreground">
           Tell us in a short essay what you've achieved in geometry or maths so far —

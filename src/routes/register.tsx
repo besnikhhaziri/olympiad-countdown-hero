@@ -47,6 +47,7 @@ function Register() {
       country: String(f.get("country") ?? "").slice(0, 100),
       school: String(f.get("school") ?? "").trim().slice(0, 200),
       grade: String(f.get("grade") ?? "").slice(0, 40),
+      category: String(f.get("category") ?? "").slice(0, 20),
     });
     setBusy(false);
     if (error) {
@@ -143,6 +144,30 @@ function Register() {
                   <option key={g}>{g}</option>
                 ))}
               </select>
+            </div>
+
+            <div>
+              <label
+                htmlFor="category"
+                className="block text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground"
+              >
+                Which level do you want to compete in?
+              </label>
+              <select
+                id="category"
+                name="category"
+                required
+                defaultValue="Medium"
+                className="mt-2 w-full rounded-lg border border-input bg-background px-4 py-3 text-sm text-chalk outline-none focus:border-crimson"
+              >
+                {["Easy", "Medium", "Hard"].map((c) => (
+                  <option key={c}>{c}</option>
+                ))}
+              </select>
+              <p className="mt-2 text-xs text-muted-foreground">
+                Easy, Medium and Hard are three separate categories — pick the one that
+                fits you best.
+              </p>
             </div>
 
             <button
