@@ -27,6 +27,8 @@ import { Route as AboutStoryRouteImport } from './routes/about/story'
 import { Route as ContributeIndexRouteImport } from './routes/contribute/index'
 import { Route as PastPapersIndexRouteImport } from './routes/past-papers/index'
 import { Route as ResultsIndexRouteImport } from './routes/results/index'
+import { Route as Results2024RouteImport } from './routes/results/2024'
+import { Route as ResultsScoreboardRouteImport } from './routes/results/scoreboard'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -118,6 +120,16 @@ const ResultsIndexRoute = ResultsIndexRouteImport.update({
   path: '/results/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const Results2024Route = Results2024RouteImport.update({
+  id: '/results/2024',
+  path: '/results/2024',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResultsScoreboardRoute = ResultsScoreboardRouteImport.update({
+  id: '/results/scoreboard',
+  path: '/results/scoreboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -134,6 +146,8 @@ export interface FileRoutesByFullPath {
   '/about/founders': typeof AboutFoundersRoute
   '/about/introduction': typeof AboutIntroductionRoute
   '/about/story': typeof AboutStoryRoute
+  '/results/2024': typeof Results2024Route
+  '/results/scoreboard': typeof ResultsScoreboardRoute
   '/about/': typeof AboutIndexRoute
   '/contribute/': typeof ContributeIndexRoute
   '/past-papers/': typeof PastPapersIndexRoute
@@ -154,6 +168,8 @@ export interface FileRoutesByTo {
   '/about/founders': typeof AboutFoundersRoute
   '/about/introduction': typeof AboutIntroductionRoute
   '/about/story': typeof AboutStoryRoute
+  '/results/2024': typeof Results2024Route
+  '/results/scoreboard': typeof ResultsScoreboardRoute
   '/about': typeof AboutIndexRoute
   '/contribute': typeof ContributeIndexRoute
   '/past-papers': typeof PastPapersIndexRoute
@@ -175,6 +191,8 @@ export interface FileRoutesById {
   '/about/founders': typeof AboutFoundersRoute
   '/about/introduction': typeof AboutIntroductionRoute
   '/about/story': typeof AboutStoryRoute
+  '/results/2024': typeof Results2024Route
+  '/results/scoreboard': typeof ResultsScoreboardRoute
   '/about/': typeof AboutIndexRoute
   '/contribute/': typeof ContributeIndexRoute
   '/past-papers/': typeof PastPapersIndexRoute
@@ -197,6 +215,8 @@ export interface FileRouteTypes {
     | '/about/founders'
     | '/about/introduction'
     | '/about/story'
+    | '/results/2024'
+    | '/results/scoreboard'
     | '/about/'
     | '/contribute/'
     | '/past-papers/'
@@ -217,6 +237,8 @@ export interface FileRouteTypes {
     | '/about/founders'
     | '/about/introduction'
     | '/about/story'
+    | '/results/2024'
+    | '/results/scoreboard'
     | '/about'
     | '/contribute'
     | '/past-papers'
@@ -237,6 +259,8 @@ export interface FileRouteTypes {
     | '/about/founders'
     | '/about/introduction'
     | '/about/story'
+    | '/results/2024'
+    | '/results/scoreboard'
     | '/about/'
     | '/contribute/'
     | '/past-papers/'
@@ -258,6 +282,8 @@ export interface RootRouteChildren {
   AboutFoundersRoute: typeof AboutFoundersRoute
   AboutIntroductionRoute: typeof AboutIntroductionRoute
   AboutStoryRoute: typeof AboutStoryRoute
+  Results2024Route: typeof Results2024Route
+  ResultsScoreboardRoute: typeof ResultsScoreboardRoute
   AboutIndexRoute: typeof AboutIndexRoute
   ContributeIndexRoute: typeof ContributeIndexRoute
   PastPapersIndexRoute: typeof PastPapersIndexRoute
@@ -392,6 +418,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResultsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/results/2024': {
+      id: '/results/2024'
+      path: '/results/2024'
+      fullPath: '/results/2024'
+      preLoaderRoute: typeof Results2024RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/results/scoreboard': {
+      id: '/results/scoreboard'
+      path: '/results/scoreboard'
+      fullPath: '/results/scoreboard'
+      preLoaderRoute: typeof ResultsScoreboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -410,6 +450,8 @@ const rootRouteChildren: RootRouteChildren = {
   AboutFoundersRoute: AboutFoundersRoute,
   AboutIntroductionRoute: AboutIntroductionRoute,
   AboutStoryRoute: AboutStoryRoute,
+  Results2024Route: Results2024Route,
+  ResultsScoreboardRoute: ResultsScoreboardRoute,
   AboutIndexRoute: AboutIndexRoute,
   ContributeIndexRoute: ContributeIndexRoute,
   PastPapersIndexRoute: PastPapersIndexRoute,

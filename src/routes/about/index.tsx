@@ -73,3 +73,6 @@ function About() {
     </SiteLayout>
   );
 }
+
+const pill =
+  "rounded-full border border-border px-4 py-1.5 text-sm text-muted-foreground hover:text-chalk";
