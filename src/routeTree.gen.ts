@@ -26,6 +26,8 @@ import { Route as AboutIntroductionRouteImport } from './routes/about/introducti
 import { Route as AboutStoryRouteImport } from './routes/about/story'
 import { Route as ContributeIndexRouteImport } from './routes/contribute/index'
 import { Route as PastPapersIndexRouteImport } from './routes/past-papers/index'
+import { Route as PastPapers2024RouteImport } from './routes/past-papers/2024'
+import { Route as PastPapers2026RouteImport } from './routes/past-papers/2026'
 import { Route as ResultsIndexRouteImport } from './routes/results/index'
 import { Route as Results2024RouteImport } from './routes/results/2024'
 import { Route as ResultsScoreboardRouteImport } from './routes/results/scoreboard'
@@ -115,6 +117,16 @@ const PastPapersIndexRoute = PastPapersIndexRouteImport.update({
   path: '/past-papers/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PastPapers2024Route = PastPapers2024RouteImport.update({
+  id: '/past-papers/2024',
+  path: '/past-papers/2024',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PastPapers2026Route = PastPapers2026RouteImport.update({
+  id: '/past-papers/2026',
+  path: '/past-papers/2026',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResultsIndexRoute = ResultsIndexRouteImport.update({
   id: '/results/',
   path: '/results/',
@@ -146,6 +158,8 @@ export interface FileRoutesByFullPath {
   '/about/founders': typeof AboutFoundersRoute
   '/about/introduction': typeof AboutIntroductionRoute
   '/about/story': typeof AboutStoryRoute
+  '/past-papers/2024': typeof PastPapers2024Route
+  '/past-papers/2026': typeof PastPapers2026Route
   '/results/2024': typeof Results2024Route
   '/results/scoreboard': typeof ResultsScoreboardRoute
   '/about/': typeof AboutIndexRoute
@@ -168,6 +182,8 @@ export interface FileRoutesByTo {
   '/about/founders': typeof AboutFoundersRoute
   '/about/introduction': typeof AboutIntroductionRoute
   '/about/story': typeof AboutStoryRoute
+  '/past-papers/2024': typeof PastPapers2024Route
+  '/past-papers/2026': typeof PastPapers2026Route
   '/results/2024': typeof Results2024Route
   '/results/scoreboard': typeof ResultsScoreboardRoute
   '/about': typeof AboutIndexRoute
@@ -191,6 +207,8 @@ export interface FileRoutesById {
   '/about/founders': typeof AboutFoundersRoute
   '/about/introduction': typeof AboutIntroductionRoute
   '/about/story': typeof AboutStoryRoute
+  '/past-papers/2024': typeof PastPapers2024Route
+  '/past-papers/2026': typeof PastPapers2026Route
   '/results/2024': typeof Results2024Route
   '/results/scoreboard': typeof ResultsScoreboardRoute
   '/about/': typeof AboutIndexRoute
@@ -215,6 +233,8 @@ export interface FileRouteTypes {
     | '/about/founders'
     | '/about/introduction'
     | '/about/story'
+    | '/past-papers/2024'
+    | '/past-papers/2026'
     | '/results/2024'
     | '/results/scoreboard'
     | '/about/'
@@ -237,6 +257,8 @@ export interface FileRouteTypes {
     | '/about/founders'
     | '/about/introduction'
     | '/about/story'
+    | '/past-papers/2024'
+    | '/past-papers/2026'
     | '/results/2024'
     | '/results/scoreboard'
     | '/about'
@@ -259,6 +281,8 @@ export interface FileRouteTypes {
     | '/about/founders'
     | '/about/introduction'
     | '/about/story'
+    | '/past-papers/2024'
+    | '/past-papers/2026'
     | '/results/2024'
     | '/results/scoreboard'
     | '/about/'
@@ -282,6 +306,8 @@ export interface RootRouteChildren {
   AboutFoundersRoute: typeof AboutFoundersRoute
   AboutIntroductionRoute: typeof AboutIntroductionRoute
   AboutStoryRoute: typeof AboutStoryRoute
+  PastPapers2024Route: typeof PastPapers2024Route
+  PastPapers2026Route: typeof PastPapers2026Route
   Results2024Route: typeof Results2024Route
   ResultsScoreboardRoute: typeof ResultsScoreboardRoute
   AboutIndexRoute: typeof AboutIndexRoute
@@ -411,6 +437,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PastPapersIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/past-papers/2024': {
+      id: '/past-papers/2024'
+      path: '/past-papers/2024'
+      fullPath: '/past-papers/2024'
+      preLoaderRoute: typeof PastPapers2024RouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/past-papers/2026': {
+      id: '/past-papers/2026'
+      path: '/past-papers/2026'
+      fullPath: '/past-papers/2026'
+      preLoaderRoute: typeof PastPapers2026RouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/results/': {
       id: '/results/'
       path: '/results'
@@ -450,6 +490,8 @@ const rootRouteChildren: RootRouteChildren = {
   AboutFoundersRoute: AboutFoundersRoute,
   AboutIntroductionRoute: AboutIntroductionRoute,
   AboutStoryRoute: AboutStoryRoute,
+  PastPapers2024Route: PastPapers2024Route,
+  PastPapers2026Route: PastPapers2026Route,
   Results2024Route: Results2024Route,
   ResultsScoreboardRoute: ResultsScoreboardRoute,
   AboutIndexRoute: AboutIndexRoute,
