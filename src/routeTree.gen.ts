@@ -20,6 +20,10 @@ import { Route as ResourcesRouteImport } from './routes/resources'
 import { Route as StaffRouteImport } from './routes/staff'
 import { Route as StaffAdminRouteImport } from './routes/staff-admin'
 import { Route as AboutIndexRouteImport } from './routes/about/index'
+import { Route as AboutFormatRouteImport } from './routes/about/format'
+import { Route as AboutFoundersRouteImport } from './routes/about/founders'
+import { Route as AboutIntroductionRouteImport } from './routes/about/introduction'
+import { Route as AboutStoryRouteImport } from './routes/about/story'
 import { Route as ContributeIndexRouteImport } from './routes/contribute/index'
 import { Route as PastPapersIndexRouteImport } from './routes/past-papers/index'
 import { Route as ResultsIndexRouteImport } from './routes/results/index'
@@ -79,6 +83,26 @@ const AboutIndexRoute = AboutIndexRouteImport.update({
   path: '/about/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutFormatRoute = AboutFormatRouteImport.update({
+  id: '/about/format',
+  path: '/about/format',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutFoundersRoute = AboutFoundersRouteImport.update({
+  id: '/about/founders',
+  path: '/about/founders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutIntroductionRoute = AboutIntroductionRouteImport.update({
+  id: '/about/introduction',
+  path: '/about/introduction',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutStoryRoute = AboutStoryRouteImport.update({
+  id: '/about/story',
+  path: '/about/story',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ContributeIndexRoute = ContributeIndexRouteImport.update({
   id: '/contribute/',
   path: '/contribute/',
@@ -106,6 +130,10 @@ export interface FileRoutesByFullPath {
   '/resources': typeof ResourcesRoute
   '/staff': typeof StaffRoute
   '/staff-admin': typeof StaffAdminRoute
+  '/about/format': typeof AboutFormatRoute
+  '/about/founders': typeof AboutFoundersRoute
+  '/about/introduction': typeof AboutIntroductionRoute
+  '/about/story': typeof AboutStoryRoute
   '/about/': typeof AboutIndexRoute
   '/contribute/': typeof ContributeIndexRoute
   '/past-papers/': typeof PastPapersIndexRoute
@@ -122,6 +150,10 @@ export interface FileRoutesByTo {
   '/resources': typeof ResourcesRoute
   '/staff': typeof StaffRoute
   '/staff-admin': typeof StaffAdminRoute
+  '/about/format': typeof AboutFormatRoute
+  '/about/founders': typeof AboutFoundersRoute
+  '/about/introduction': typeof AboutIntroductionRoute
+  '/about/story': typeof AboutStoryRoute
   '/about': typeof AboutIndexRoute
   '/contribute': typeof ContributeIndexRoute
   '/past-papers': typeof PastPapersIndexRoute
@@ -139,6 +171,10 @@ export interface FileRoutesById {
   '/resources': typeof ResourcesRoute
   '/staff': typeof StaffRoute
   '/staff-admin': typeof StaffAdminRoute
+  '/about/format': typeof AboutFormatRoute
+  '/about/founders': typeof AboutFoundersRoute
+  '/about/introduction': typeof AboutIntroductionRoute
+  '/about/story': typeof AboutStoryRoute
   '/about/': typeof AboutIndexRoute
   '/contribute/': typeof ContributeIndexRoute
   '/past-papers/': typeof PastPapersIndexRoute
@@ -157,6 +193,10 @@ export interface FileRouteTypes {
     | '/resources'
     | '/staff'
     | '/staff-admin'
+    | '/about/format'
+    | '/about/founders'
+    | '/about/introduction'
+    | '/about/story'
     | '/about/'
     | '/contribute/'
     | '/past-papers/'
@@ -173,6 +213,10 @@ export interface FileRouteTypes {
     | '/resources'
     | '/staff'
     | '/staff-admin'
+    | '/about/format'
+    | '/about/founders'
+    | '/about/introduction'
+    | '/about/story'
     | '/about'
     | '/contribute'
     | '/past-papers'
@@ -189,6 +233,10 @@ export interface FileRouteTypes {
     | '/resources'
     | '/staff'
     | '/staff-admin'
+    | '/about/format'
+    | '/about/founders'
+    | '/about/introduction'
+    | '/about/story'
     | '/about/'
     | '/contribute/'
     | '/past-papers/'
@@ -206,6 +254,10 @@ export interface RootRouteChildren {
   ResourcesRoute: typeof ResourcesRoute
   StaffRoute: typeof StaffRoute
   StaffAdminRoute: typeof StaffAdminRoute
+  AboutFormatRoute: typeof AboutFormatRoute
+  AboutFoundersRoute: typeof AboutFoundersRoute
+  AboutIntroductionRoute: typeof AboutIntroductionRoute
+  AboutStoryRoute: typeof AboutStoryRoute
   AboutIndexRoute: typeof AboutIndexRoute
   ContributeIndexRoute: typeof ContributeIndexRoute
   PastPapersIndexRoute: typeof PastPapersIndexRoute
@@ -291,6 +343,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about/format': {
+      id: '/about/format'
+      path: '/about/format'
+      fullPath: '/about/format'
+      preLoaderRoute: typeof AboutFormatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about/founders': {
+      id: '/about/founders'
+      path: '/about/founders'
+      fullPath: '/about/founders'
+      preLoaderRoute: typeof AboutFoundersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about/introduction': {
+      id: '/about/introduction'
+      path: '/about/introduction'
+      fullPath: '/about/introduction'
+      preLoaderRoute: typeof AboutIntroductionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about/story': {
+      id: '/about/story'
+      path: '/about/story'
+      fullPath: '/about/story'
+      preLoaderRoute: typeof AboutStoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/contribute/': {
       id: '/contribute/'
       path: '/contribute'
@@ -326,6 +406,10 @@ const rootRouteChildren: RootRouteChildren = {
   ResourcesRoute: ResourcesRoute,
   StaffRoute: StaffRoute,
   StaffAdminRoute: StaffAdminRoute,
+  AboutFormatRoute: AboutFormatRoute,
+  AboutFoundersRoute: AboutFoundersRoute,
+  AboutIntroductionRoute: AboutIntroductionRoute,
+  AboutStoryRoute: AboutStoryRoute,
   AboutIndexRoute: AboutIndexRoute,
   ContributeIndexRoute: ContributeIndexRoute,
   PastPapersIndexRoute: PastPapersIndexRoute,

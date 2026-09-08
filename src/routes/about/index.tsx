@@ -34,20 +34,18 @@ function About() {
 
       <section className="mx-auto max-w-4xl px-5 pt-10">
         <nav className="flex flex-wrap gap-2">
-          {[
-            ["/about/introduction", "Introduction"],
-            ["/about/story", "Our story"],
-            ["/about/founders", "Founders"],
-            ["/about/format", "The format"],
-          ].map(([to, label]) => (
-            <Link
-              key={to}
-              to={to!}
-              className="rounded-full border border-border px-4 py-1.5 text-sm text-muted-foreground hover:text-chalk"
-            >
-              {label}
-            </Link>
-          ))}
+          <Link to="/about/introduction" className={pill}>
+            Introduction
+          </Link>
+          <Link to="/about/story" className={pill}>
+            Our story
+          </Link>
+          <Link to="/about/founders" className={pill}>
+            Founders
+          </Link>
+          <Link to="/about/format" className={pill}>
+            The format
+          </Link>
         </nav>
       </section>
 
