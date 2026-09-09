@@ -1,9 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
-import { toast } from "sonner";
-import { SiteLayout, NEW_EMAIL, DISCORD_URL } from "@/components/SiteLayout";
-import { CountrySelect } from "@/components/CountrySelect";
-import { supabase } from "@/integrations/supabase/client";
+import { SiteLayout, DISCORD_URL } from "@/components/SiteLayout";
+import { ApplyForm, MarkingSchemeCard, RolesGrid } from "@/components/contribute-parts";
 
 export const Route = createFileRoute("/contribute/")({
   head: () => ({
@@ -29,92 +26,10 @@ export const Route = createFileRoute("/contribute/")({
   component: Contribute,
 });
 
-const ROLES = [
-  {
-    id: "volunteer",
-    title: "Volunteer",
-    body: "General help wherever it's needed: outreach, translations, proofreading and contest-day support.",
-  },
-  {
-    id: "grader",
-    title: "Grader",
-    body: "Mark scripts against our marking scheme during the week after the contest. Roughly 5-8 hours of work.",
-  },
-  {
-    id: "marking-scheme",
-    title: "Marking scheme",
-    body: "Help write the marking scheme: point splits, partial credit rules and worked-out grading notes.",
-  },
-  {
-    id: "solution-writer",
-    title: "Solution writer",
-    body: "Write up clean, readable official solutions for one of the problems.",
-  },
-  {
-    id: "problem-committee",
-    title: "Problem committee",
-    body: "Test-solve proposals, judge difficulty and help shape the final paper.",
-  },
-  {
-    id: "community",
-    title: "Community & moderation",
-    body: "Run weekly problems and keep the Discord server useful and welcoming.",
-  },
-];
-
-type Entry = { key: number; role_wanted: string; essay: string };
-
-const emptyEntry = (key: number): Entry => ({ key, role_wanted: "grader", essay: "" });
+const pill =
+  "rounded-full border border-border px-4 py-1.5 text-sm text-muted-foreground hover:text-chalk";
 
 function Contribute() {
-  const [sent, setSent] = useState(0);
-  const [busy, setBusy] = useState(false);
-  const [entries, setEntries] = useState<Entry[]>([emptyEntry(1)]);
-
-  function update(key: number, patch: Partial<Entry>) {
-    setEntries((es) => es.map((e) => (e.key === key ? { ...e, ...patch } : e)));
-  }
-
-  async function submit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const f = new FormData(e.currentTarget);
-    const email = String(f.get("email") ?? "").trim();
-    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-      toast.error("Please enter a valid email address.");
-      return;
-    }
-    const filled = entries.filter((x) => x.essay.trim());
-    if (filled.length === 0) {
-      toast.error("Write a short essay for at least one role.");
-      return;
-    }
-    const batch_id = crypto.randomUUID();
-    const person = {
-      batch_id,
-      first_name: String(f.get("first_name") ?? "").trim().slice(0, 120),
-      last_name: String(f.get("last_name") ?? "").trim().slice(0, 120),
-      email: email.slice(0, 255),
-      country: String(f.get("country") ?? "").slice(0, 100),
-    };
-
-    setBusy(true);
-    const { error } = await supabase.from("public_contributor_applications").insert(
-      filled.map((x) => ({
-        ...person,
-        role_wanted: x.role_wanted,
-        essay: x.essay.trim().slice(0, 8000),
-      })),
-    );
-    setBusy(false);
-    if (error) {
-      toast.error(error.message);
-      return;
-    }
-    setSent(filled.length);
-    setEntries([emptyEntry(1)]);
-    toast.success("Application sent — thank you!");
-  }
-
   return (
     <SiteLayout>
       <section className="grid-paper border-b border-border">
@@ -148,165 +63,34 @@ function Contribute() {
         </div>
       </section>
 
-      <section id="roles" className="mx-auto max-w-4xl scroll-mt-24 px-5 py-14">
+      <section className="mx-auto max-w-4xl px-5 pt-10">
+        <nav className="flex flex-wrap gap-2">
+          <Link to="/contribute/roles" className={pill}>
+            Volunteer roles
+          </Link>
+          <Link to="/contribute/marking-scheme" className={pill}>
+            Marking scheme
+          </Link>
+          <Link to="/contribute/apply" className={pill}>
+            Apply
+          </Link>
+        </nav>
+      </section>
+
+      <section className="mx-auto max-w-4xl px-5 py-14">
         <h2 className="font-display text-2xl font-semibold text-chalk">Open roles</h2>
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
-          {ROLES.map((r) => (
-            <article key={r.id} className="rounded-2xl border border-border bg-card p-6">
-              <h3 className="font-display text-lg font-semibold text-chalk">{r.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{r.body}</p>
-            </article>
-          ))}
-        </div>
+        <RolesGrid />
       </section>
 
-      <section id="marking" className="mx-auto max-w-4xl scroll-mt-24 px-5 pb-4">
-        <div className="rounded-2xl border border-border bg-card p-6">
-          <h2 className="font-display text-2xl font-semibold text-chalk">Marking scheme</h2>
-          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-            Every problem is graded out of 10 against a written marking scheme agreed
-            before grading starts, so partial credit is applied the same way for everyone.
-            The scheme for each edition is published together with the official solutions.
-            If you'd like to help write it, apply below for the "Marking scheme" role.
-          </p>
-        </div>
+      <section className="mx-auto max-w-4xl px-5 pb-4">
+        <h2 className="mb-4 font-display text-2xl font-semibold text-chalk">Marking scheme</h2>
+        <MarkingSchemeCard />
       </section>
 
-      <section id="apply" className="mx-auto max-w-2xl scroll-mt-24 px-5 py-16 pb-20">
+      <section className="mx-auto max-w-2xl px-5 py-16 pb-20">
         <h2 className="font-display text-2xl font-semibold text-chalk">Apply</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Tell us in a short essay what you've achieved in geometry or maths so far —
-          contests, results, teaching, writing, anything relevant — and why you want the
-          role. You can apply for more than one role at once.
-        </p>
-
-        {sent > 0 ? (
-          <div className="mt-6 rounded-2xl border border-crimson bg-card p-8 text-center">
-            <h3 className="font-display text-xl font-semibold text-chalk">
-              Application received
-            </h3>
-            <p className="mt-2 text-sm text-muted-foreground">
-              We'll reply by email before grading season. Thank you for helping.
-            </p>
-            <button
-              onClick={() => setSent(0)}
-              className="mt-6 rounded-lg border border-border px-5 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-chalk"
-            >
-              Apply again
-            </button>
-          </div>
-        ) : (
-          <form onSubmit={submit} className="mt-6 space-y-8">
-            <div className="space-y-5 rounded-2xl border border-border bg-card p-8">
-              <div className="grid gap-5 sm:grid-cols-2">
-                <div>
-                  <L htmlFor="first_name">Name</L>
-                  <input id="first_name" name="first_name" required maxLength={120} className={field} />
-                </div>
-                <div>
-                  <L htmlFor="last_name">Surname</L>
-                  <input id="last_name" name="last_name" required maxLength={120} className={field} />
-                </div>
-              </div>
-              <div>
-                <L htmlFor="email">Email</L>
-                <input id="email" name="email" type="email" required maxLength={255} className={field} />
-              </div>
-              <div>
-                <L htmlFor="country">Country</L>
-                <CountrySelect />
-              </div>
-            </div>
-
-            {entries.map((x, i) => (
-              <div
-                key={x.key}
-                className="space-y-5 rounded-2xl border border-border bg-card p-8"
-              >
-                <div className="flex items-center justify-between">
-                  <h3 className="font-display text-lg font-semibold text-chalk">
-                    Application {i + 1}
-                  </h3>
-                  {entries.length > 1 && (
-                    <button
-                      type="button"
-                      onClick={() => setEntries((es) => es.filter((y) => y.key !== x.key))}
-                      className="text-xs font-semibold uppercase tracking-[0.14em] text-crimson"
-                    >
-                      Remove
-                    </button>
-                  )}
-                </div>
-                <div>
-                  <L htmlFor={`role-${x.key}`}>Role</L>
-                  <select
-                    id={`role-${x.key}`}
-                    value={x.role_wanted}
-                    onChange={(e) => update(x.key, { role_wanted: e.target.value })}
-                    className={field}
-                  >
-                    {ROLES.map((r) => (
-                      <option key={r.id} value={r.id}>
-                        {r.title}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <L htmlFor={`essay-${x.key}`}>Your achievements & motivation</L>
-                  <textarea
-                    id={`essay-${x.key}`}
-                    rows={8}
-                    maxLength={8000}
-                    value={x.essay}
-                    onChange={(e) => update(x.key, { essay: e.target.value })}
-                    placeholder="Contests you've taken part in, results, geometry you love, teaching or writing experience…"
-                    className={field}
-                  />
-                </div>
-              </div>
-            ))}
-
-            <button
-              type="button"
-              onClick={() =>
-                setEntries((es) => [...es, emptyEntry((es[es.length - 1]?.key ?? 0) + 1)])
-              }
-              className="w-full rounded-lg border border-dashed border-border px-6 py-3 font-display text-xs font-semibold uppercase tracking-[0.14em] text-chalk hover:bg-secondary"
-            >
-              + Apply for another role
-            </button>
-
-            <button
-              disabled={busy}
-              className="w-full rounded-lg bg-crimson px-6 py-3 font-display text-sm font-semibold uppercase tracking-wide text-crimson-foreground disabled:opacity-60"
-            >
-              {busy ? "Sending…" : "Send application"}
-            </button>
-            <p className="text-center text-xs text-muted-foreground">
-              Or email{" "}
-              <a href={`mailto:${NEW_EMAIL}`} className="text-crimson underline">
-                {NEW_EMAIL}
-              </a>
-              .
-            </p>
-          </form>
-        )}
+        <ApplyForm />
       </section>
     </SiteLayout>
-  );
-}
-
-const field =
-  "mt-2 w-full rounded-lg border border-input bg-background px-4 py-3 text-sm text-chalk outline-none focus:border-crimson";
-
-function L({ htmlFor, children }: { htmlFor: string; children: React.ReactNode }) {
-  return (
-    <label
-      htmlFor={htmlFor}
-      className="block text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground"
-    >
-      {children}
-    </label>
   );
 }

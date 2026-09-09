@@ -25,6 +25,9 @@ import { Route as AboutFoundersRouteImport } from './routes/about/founders'
 import { Route as AboutIntroductionRouteImport } from './routes/about/introduction'
 import { Route as AboutStoryRouteImport } from './routes/about/story'
 import { Route as ContributeIndexRouteImport } from './routes/contribute/index'
+import { Route as ContributeApplyRouteImport } from './routes/contribute/apply'
+import { Route as ContributeMarkingSchemeRouteImport } from './routes/contribute/marking-scheme'
+import { Route as ContributeRolesRouteImport } from './routes/contribute/roles'
 import { Route as PastPapersIndexRouteImport } from './routes/past-papers/index'
 import { Route as PastPapers2024RouteImport } from './routes/past-papers/2024'
 import { Route as PastPapers2026RouteImport } from './routes/past-papers/2026'
@@ -112,6 +115,21 @@ const ContributeIndexRoute = ContributeIndexRouteImport.update({
   path: '/contribute/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContributeApplyRoute = ContributeApplyRouteImport.update({
+  id: '/contribute/apply',
+  path: '/contribute/apply',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContributeMarkingSchemeRoute = ContributeMarkingSchemeRouteImport.update({
+  id: '/contribute/marking-scheme',
+  path: '/contribute/marking-scheme',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContributeRolesRoute = ContributeRolesRouteImport.update({
+  id: '/contribute/roles',
+  path: '/contribute/roles',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const PastPapersIndexRoute = PastPapersIndexRouteImport.update({
   id: '/past-papers/',
   path: '/past-papers/',
@@ -158,6 +176,9 @@ export interface FileRoutesByFullPath {
   '/about/founders': typeof AboutFoundersRoute
   '/about/introduction': typeof AboutIntroductionRoute
   '/about/story': typeof AboutStoryRoute
+  '/contribute/apply': typeof ContributeApplyRoute
+  '/contribute/marking-scheme': typeof ContributeMarkingSchemeRoute
+  '/contribute/roles': typeof ContributeRolesRoute
   '/past-papers/2024': typeof PastPapers2024Route
   '/past-papers/2026': typeof PastPapers2026Route
   '/results/2024': typeof Results2024Route
@@ -182,6 +203,9 @@ export interface FileRoutesByTo {
   '/about/founders': typeof AboutFoundersRoute
   '/about/introduction': typeof AboutIntroductionRoute
   '/about/story': typeof AboutStoryRoute
+  '/contribute/apply': typeof ContributeApplyRoute
+  '/contribute/marking-scheme': typeof ContributeMarkingSchemeRoute
+  '/contribute/roles': typeof ContributeRolesRoute
   '/past-papers/2024': typeof PastPapers2024Route
   '/past-papers/2026': typeof PastPapers2026Route
   '/results/2024': typeof Results2024Route
@@ -207,6 +231,9 @@ export interface FileRoutesById {
   '/about/founders': typeof AboutFoundersRoute
   '/about/introduction': typeof AboutIntroductionRoute
   '/about/story': typeof AboutStoryRoute
+  '/contribute/apply': typeof ContributeApplyRoute
+  '/contribute/marking-scheme': typeof ContributeMarkingSchemeRoute
+  '/contribute/roles': typeof ContributeRolesRoute
   '/past-papers/2024': typeof PastPapers2024Route
   '/past-papers/2026': typeof PastPapers2026Route
   '/results/2024': typeof Results2024Route
@@ -233,6 +260,9 @@ export interface FileRouteTypes {
     | '/about/founders'
     | '/about/introduction'
     | '/about/story'
+    | '/contribute/apply'
+    | '/contribute/marking-scheme'
+    | '/contribute/roles'
     | '/past-papers/2024'
     | '/past-papers/2026'
     | '/results/2024'
@@ -257,6 +287,9 @@ export interface FileRouteTypes {
     | '/about/founders'
     | '/about/introduction'
     | '/about/story'
+    | '/contribute/apply'
+    | '/contribute/marking-scheme'
+    | '/contribute/roles'
     | '/past-papers/2024'
     | '/past-papers/2026'
     | '/results/2024'
@@ -281,6 +314,9 @@ export interface FileRouteTypes {
     | '/about/founders'
     | '/about/introduction'
     | '/about/story'
+    | '/contribute/apply'
+    | '/contribute/marking-scheme'
+    | '/contribute/roles'
     | '/past-papers/2024'
     | '/past-papers/2026'
     | '/results/2024'
@@ -306,6 +342,9 @@ export interface RootRouteChildren {
   AboutFoundersRoute: typeof AboutFoundersRoute
   AboutIntroductionRoute: typeof AboutIntroductionRoute
   AboutStoryRoute: typeof AboutStoryRoute
+  ContributeApplyRoute: typeof ContributeApplyRoute
+  ContributeMarkingSchemeRoute: typeof ContributeMarkingSchemeRoute
+  ContributeRolesRoute: typeof ContributeRolesRoute
   PastPapers2024Route: typeof PastPapers2024Route
   PastPapers2026Route: typeof PastPapers2026Route
   Results2024Route: typeof Results2024Route
@@ -430,6 +469,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContributeIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contribute/apply': {
+      id: '/contribute/apply'
+      path: '/contribute/apply'
+      fullPath: '/contribute/apply'
+      preLoaderRoute: typeof ContributeApplyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contribute/marking-scheme': {
+      id: '/contribute/marking-scheme'
+      path: '/contribute/marking-scheme'
+      fullPath: '/contribute/marking-scheme'
+      preLoaderRoute: typeof ContributeMarkingSchemeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contribute/roles': {
+      id: '/contribute/roles'
+      path: '/contribute/roles'
+      fullPath: '/contribute/roles'
+      preLoaderRoute: typeof ContributeRolesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/past-papers/': {
       id: '/past-papers/'
       path: '/past-papers'
@@ -490,6 +550,9 @@ const rootRouteChildren: RootRouteChildren = {
   AboutFoundersRoute: AboutFoundersRoute,
   AboutIntroductionRoute: AboutIntroductionRoute,
   AboutStoryRoute: AboutStoryRoute,
+  ContributeApplyRoute: ContributeApplyRoute,
+  ContributeMarkingSchemeRoute: ContributeMarkingSchemeRoute,
+  ContributeRolesRoute: ContributeRolesRoute,
   PastPapers2024Route: PastPapers2024Route,
   PastPapers2026Route: PastPapers2026Route,
   Results2024Route: Results2024Route,
