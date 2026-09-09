@@ -41,10 +41,7 @@ function Home() {
         <div className="pointer-events-none absolute inset-0 hero-glow" />
         <div className="relative mx-auto grid max-w-6xl items-center gap-12 px-5 py-20 md:grid-cols-2 md:py-28">
           <div>
-            <span className="inline-block rounded-full border border-crimson px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-chalk">
-              November 14, 2026
-            </span>
-            <h1 className="mt-6 font-display text-5xl font-bold leading-[1.05] text-chalk sm:text-6xl">
+            <h1 className="font-display text-5xl font-bold leading-[1.05] text-chalk sm:text-6xl">
               Geometry Mains
               <br />
               Olympiad
